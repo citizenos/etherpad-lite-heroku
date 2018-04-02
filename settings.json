@@ -1,0 +1,117 @@
+{
+  "title": "ToruPad",
+  "favicon": "favicon.ico",
+  "ssl": false,
+  "dbType": "postgres",
+  "dbSettings": "postgres://etherpad:etherpad@localhost:5433/etherpad",
+  "defaultPadText": "Topic content here..",
+  "requireSession": false,
+  "editOnly": true,
+  "sessionNoPassword": false,
+  "minify": false,
+  "maxAge": 21600,
+  "abiword": null,
+  "requireAuthentication": true,
+  "requireAuthorization": true,
+  "trustProxy": true,
+  "disableIPlogging": false,
+  "socketTransportProtocols": [
+    "xhr-polling",
+    "jsonp-polling",
+    "htmlfile"
+  ],
+  "loglevel": "DEBUG",
+  "logconfig": {
+    "appenders": [
+      {
+        "type": "console"
+      }
+    ]
+  },
+  "padOptions": {
+    "noColors": true,
+    "showControls": true,
+    "showChat": false,
+    "showLineNumbers": false,
+    "useMonospaceFont": false,
+    "userName": false,
+    "userColor": false,
+    "rtl": false,
+    "alwaysShowChat": false,
+    "chatAndUsers": false,
+    "lang": "en-gb"
+  },
+  "toolbar": {
+    "left": [
+      [
+        "bold",
+        "italic",
+        "underline",
+        "strikethrough"
+      ],
+      [
+        "orderedlist",
+        "unorderedlist",
+        "indent",
+        "outdent"
+      ],
+      [
+        "alignLeft",
+        "alignCenter",
+        "alignRight"
+      ],
+      [
+        "undo",
+        "redo"
+      ]
+    ],
+    "right": [
+      [
+        "timeslider"
+      ],
+      [
+        "epAuthorshipToggle"
+      ],
+      [
+        "epCitizenOSUserListToggle"
+      ]
+    ],
+    "timeslider": [
+      [
+        "timeslider_returnToPad"
+      ]
+    ]
+  },
+  "ep_themes_ext": {
+    "default": [
+      "https://citizenos.com/static/styles/etherpad.css"
+    ],
+    "citizenos.com": [
+      "https://citizenos.com/static/styles/etherpad.css"
+    ],
+    "rahvaalgatus.ee": [
+      "https://rahvaalgatus.ee/css/editorless.css"
+    ]
+  },
+  "ep_webhooks": {
+    "apiKey": "superSecretAPIkeySentInXApiKeyHeader",
+    "pads": {
+      "update": [
+        "https://citizenos.com/api/internal/notifications/pads/update"
+      ]
+    }
+  },
+  "ep_auth_citizenos": {
+    "jwt": {
+      "publicKey": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4x3Ld7aV+QefkrdISdws\nNFP2nxIpY/vVffttUxrBmQ8FKZTP72uRfJ4p7TafP2AY69UKS9uKemKQs/E9U4yy\nYgKPTD1m3fzs6THh0fwP8Et6qinQI5HP+OcuRDm95q3GoLk4gcF4EKcAFZA2JrFC\nSWWhiJ7qCb++fM3bFcy1i10VoLUaLNJxhkwxOrk15QPgR8uFvLqDIzvJn3GuKpkk\nunvU8VZ2vucCVUH91JPY23iNukGuUE/e+b8H9oyi/vomRpU3zNIKCrk/fynyPAhM\npQWaOT4cNibHOS+KNqJpCKKi3xvfxb+fZvX9sVKLzbibCj2vSL8wjUyayw0zOfnY\n1QIDAQAB\n-----END PUBLIC KEY-----\n",
+      "algorithms": [
+        "RS256"
+      ]
+    },
+    "authorization": {
+      "url": "https://citizenos.com/api/internal/topics/:topicId/permissions",
+      "apiKey": "superSecretAPIkeySentInXApiKeyHeader",
+      "cacheMaxAge": 60000
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "etherpad-lite-heroku",
+  "version": "0.0.1",
+  "description": "A copy of https://github.com/bright-star/etherpad-lite-heroku to be able to have our own update cycle and EP plugin dependencies in package.json.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "6.13.1",
+    "npm": "3.10.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:tiblu/etherpad-lite-heroku.git"
+  },
+  "dependencies": {
+    "ep_align": "git+https://github.com/ilmartyrk/ep_align",
+    "ep_auth_citizenos": "git+https://github.com/citizenos/ep_auth_citizenos#c8fab7079b306f21011893f31c187605961e3e6c",
+    "ep_authorship_toggle": "0.0.3",
+    "ep_embed_floating_toolbar": "0.0.3",
+    "ep_font_color": "git+https://github.com/citizenos/ep_font_color",
+    "ep_font_size": "git+https://github.com/citizenos/ep_font_size",
+    "ep_headings2": "git+https://github.com/citizenos/ep_headings2",
+    "ep_resize": "0.0.5",
+    "ep_themes_ext": "0.0.4",
+    "ep_webhooks": "1.0.2",
+    "kexec": "2.0.2",
+    "lodash": "4.11.1"
+  }
+}
