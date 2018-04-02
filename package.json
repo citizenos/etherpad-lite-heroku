@@ -1,7 +1,7 @@
 {
   "name": "etherpad-lite-heroku",
   "version": "0.0.1",
-  "description": "A copy of https://github.com/bright-star/etherpad-lite-heroku to be able to have our own update cycle and EP plugin dependencies in package.json.",
+  "description": "Deploy Etherpad-Lite on Heroku. A copy of https://github.com/bright-star/etherpad-lite-heroku to be able to have our own update cycle and EP plugin dependencies in package.json.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
