@@ -21,6 +21,7 @@
     "ep_font_color": "git+https://github.com/citizenos/ep_font_color",
     "ep_font_size": "git+https://github.com/citizenos/ep_font_size",
     "ep_headings2": "git+https://github.com/citizenos/ep_headings2",
+    "ep_image_upload": "1.0.0",
     "ep_resize": "0.0.5",
     "ep_themes_ext": "0.0.4",
     "ep_webhooks": "1.0.2",

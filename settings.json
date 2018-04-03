@@ -67,6 +67,9 @@
     ],
     "right": [
       [
+        "addImage"
+      ],
+      [
         "timeslider"
       ],
       [
@@ -113,5 +116,16 @@
       "apiKey": "superSecretAPIkeySentInXApiKeyHeader",
       "cacheMaxAge": 60000
     }
+  },
+  "ep_image_upload": {
+    "s3": {
+      "accessKeyId": "AWS_ACCESS_KEY_ID",
+      "secretAccessKey": "AWS_SECRET_ACCESS_KEY",
+      "region": "AWS_REGION",
+      "bucket": "AWS_S3_BUCKET_NAME",
+      "baseFolder": "ep"
+    },
+    "fileTypes": ["jpeg", "jpg", "bmp", "gif","png"],
+    "maxFileSize": 5000000
   }
 }
