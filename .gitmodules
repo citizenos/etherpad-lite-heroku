@@ -1,0 +1,4 @@
+[submodule "etherpad-lite"]
+	path = etherpad-lite
+	url = git@github.com:citizenos/etherpad-lite.git
+	branch = html_export_fix
