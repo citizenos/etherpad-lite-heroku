@@ -56,9 +56,6 @@
         "outdent"
       ],
       [
-        "addImage"
-      ],
-      [
         "alignLeft",
         "alignCenter",
         "alignRight"
@@ -66,6 +63,9 @@
       [
         "undo",
         "redo"
+      ],
+      [
+        "addImage"
       ]
     ],
     "right": [
