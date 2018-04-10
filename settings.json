@@ -56,6 +56,9 @@
         "outdent"
       ],
       [
+        "addImage"
+      ],
+      [
         "alignLeft",
         "alignCenter",
         "alignRight"
@@ -66,9 +69,6 @@
       ]
     ],
     "right": [
-      [
-        "addImage"
-      ],
       [
         "timeslider"
       ],
