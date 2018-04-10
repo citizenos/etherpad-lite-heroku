@@ -1,5 +1,5 @@
 {
-  "title": "ToruPad",
+  "title": "Etherpad-Lite / CitizenOS",
   "favicon": "favicon.ico",
   "ssl": false,
   "dbType": "postgres",
@@ -85,18 +85,32 @@
       ]
     ]
   },
+  "ep_align": {
+    "___version": "git+https://github.com/ilmartyrk/ep_align"
+  },
+  "ep_authorship_toggle": {
+    "___version": "0.0.3"
+  },
+  "ep_embed_floating_toolbar": {
+    "___version": "0.0.3"
+  },
+  "ep_font_color": {
+    "___version": "git+https://github.com/citizenos/ep_font_color"
+  },
+  "ep_font_size": {
+    "___Version": "git+https://github.com/citizenos/ep_font_size"
+  },
+  "ep_headings2": {
+    "___version": "git+https://github.com/citizenos/ep_headings2"
+  },
+  "ep_resize": {
+    "___version": "0.0.5"
+  },
   "ep_themes_ext": {
-    "default": [
-      "https://citizenos.com/static/styles/etherpad.css"
-    ],
-    "citizenos.com": [
-      "https://citizenos.com/static/styles/etherpad.css"
-    ],
-    "rahvaalgatus.ee": [
-      "https://rahvaalgatus.ee/css/editorless.css"
-    ]
+    "___version": "0.0.4"
   },
   "ep_webhooks": {
+    "___version": "1.0.2",
     "apiKey": "superSecretAPIkeySentInXApiKeyHeader",
     "pads": {
       "update": [
@@ -105,6 +119,7 @@
     }
   },
   "ep_auth_citizenos": {
+    "___version": "git+https://github.com/citizenos/ep_auth_citizenos#c8fab7079b306f21011893f31c187605961e3e6c",
     "jwt": {
       "publicKey": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4x3Ld7aV+QefkrdISdws\nNFP2nxIpY/vVffttUxrBmQ8FKZTP72uRfJ4p7TafP2AY69UKS9uKemKQs/E9U4yy\nYgKPTD1m3fzs6THh0fwP8Et6qinQI5HP+OcuRDm95q3GoLk4gcF4EKcAFZA2JrFC\nSWWhiJ7qCb++fM3bFcy1i10VoLUaLNJxhkwxOrk15QPgR8uFvLqDIzvJn3GuKpkk\nunvU8VZ2vucCVUH91JPY23iNukGuUE/e+b8H9oyi/vomRpU3zNIKCrk/fynyPAhM\npQWaOT4cNibHOS+KNqJpCKKi3xvfxb+fZvX9sVKLzbibCj2vSL8wjUyayw0zOfnY\n1QIDAQAB\n-----END PUBLIC KEY-----\n",
       "algorithms": [
@@ -118,6 +133,7 @@
     }
   },
   "ep_image_upload": {
+    "___version": "1.0.0",
     "s3": {
       "accessKeyId": "AWS_ACCESS_KEY_ID",
       "secretAccessKey": "AWS_SECRET_ACCESS_KEY",
@@ -125,7 +141,13 @@
       "bucket": "AWS_S3_BUCKET_NAME",
       "baseFolder": "ep"
     },
-    "fileTypes": ["jpeg", "jpg", "bmp", "gif","png"],
+    "fileTypes": [
+      "jpeg",
+      "jpg",
+      "bmp",
+      "gif",
+      "png"
+    ],
     "maxFileSize": 5000000
   }
 }

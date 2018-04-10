@@ -1,1 +1,1 @@
-web: ./preparse.js
+web: ./run.js
