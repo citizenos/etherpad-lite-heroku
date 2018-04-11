@@ -75,8 +75,8 @@ try {
     process.exit(1);
 }
 
-console.log('\nWrite the Etherpad API key to the disk from the ENV "ETHERPAD_API_KEY"...');
-var etherpadApiKey = process.env.ETHERPAD_API_KEY;
+console.log('\nWrite the Etherpad API key to the disk from the ENV "ETHERPAD_API_KEY" or local.json "___apiKey"...');
+var etherpadApiKey = process.env.ETHERPAD_API_KEY || settings.___apiKey;
 if (etherpadApiKey) {
     console.log('ETHERPAD_API_KEY found!');
     fs.writeFileSync('./etherpad-lite/APIKEY.txt', etherpadApiKey);
@@ -84,8 +84,8 @@ if (etherpadApiKey) {
     console.log('ETHERPAD_API_KEY NOT found!');
 }
 
-console.log('\nWrite the Etherpad session key to the disk from the ENV "ETHERPAD_SESSION_KEY"...');
-var etherpadSessionKey = process.env.ETHERPAD_SESSION_KEY;
+console.log('\nWrite the Etherpad session key to the disk from the ENV "ETHERPAD_SESSION_KEY" or local.json "___sessionKey"...');
+var etherpadSessionKey = process.env.ETHERPAD_SESSION_KEY || settings.___sessionKey;
 if (etherpadSessionKey) {
     console.log('ETHERPAD_SESSION_KEY found!');
     fs.writeFileSync('./etherpad-lite/SESSIONKEY.txt', etherpadSessionKey);
