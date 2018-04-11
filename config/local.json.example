@@ -65,12 +65,12 @@
       [
         "undo",
         "redo"
+      ],
+      [
+        "addImage"
       ]
     ],
     "right": [
-      [
-        "addImage"
-      ],
       [
         "timeslider"
       ]
