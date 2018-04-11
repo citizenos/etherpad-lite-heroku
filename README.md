@@ -44,6 +44,9 @@ Example plugin config in `ETHERPAD_SETTINGS` or `config/local.json`:
     ]
   }
 ```
+#### Etherpad-Lite Heroku specific conf
+
+* `ETHERPAD_LITE_HEROKU_LOGGER_LEVEL` - Logging level for the [start.js](start.js) script.
 
 ### Run
 

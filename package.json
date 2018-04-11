@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "Deploy Etherpad-Lite on Heroku. Whole configuration can be defined in env or config/local.json.",
   "scripts": {
-    "heroku-prebuild": "node herokuPrebuild.js",
-    "start-dev": "npm run heroku-prebuild && NODE_ENV=development NODE_TLS_REJECT_UNAUTHORIZED=0 node start.js",
-    "restore-original-package": "mv package.json.backup package.json"
+    "start-dev": "npm install && NODE_ENV=development NODE_TLS_REJECT_UNAUTHORIZED=0 node start.js"
   },
   "cacheDirectories": [
     "node_modules",
@@ -20,6 +18,8 @@
     "url": "git@github.com:citizenos/etherpad-lite-heroku.git"
   },
   "dependencies": {
-    "kexec": "2.0.2"
+    "kexec": "2.0.2",
+    "lodash": "4.17.5",
+    "log4js": "2.5.3"
   }
 }
