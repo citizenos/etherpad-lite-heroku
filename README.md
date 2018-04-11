@@ -15,15 +15,15 @@ Configuration can be specified in 2 ways:
 
 #### Etherpad-Lite configuration variables 
 
-Standard:
+In Heroku config variables (ENV):
 
 * `ETHERPAD_SETTINGS` - JSON string of the whole standard Etherpad-Lite `settings.json`.
 * `ETHERPAD_SESSION_KEY` - The secret stored in Etherpad-Lite `SESSIONKEY.txt`.
 * `ETHERPAD_API_KEY` - The secret stored in Etherpad-Lite `APIKEY.txt`.
-
-Non-standard:
-
 * `DATABASE_URL` - Default database URI environment variable set by Heroku. It overrides all other DB configurations.
+
+JSON defined in `ETHERPAD_SETTINGS` or `config/local.json`:
+
 * `___apiKey` - The secret stored in Etherpad-Lite `APIKEY.txt`.
 * `___sessionKey` - The secret stored in Etherpad-Lite `SESSIONKEY.txt`.
 * `___version` - Per plugin configuration. Version of plugin to be installed by NPM.
