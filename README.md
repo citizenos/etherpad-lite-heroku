@@ -24,7 +24,7 @@ Standard:
 Non-standard:
 
 * `___apiKey` - The secret stored in Etherpad-Lite `APIKEY.txt`.
-* `___sessionKey - The secret stored in Etherpad-Lite `SESSIONKEY.txt`.
+* `___sessionKey` - The secret stored in Etherpad-Lite `SESSIONKEY.txt`.
 * `___version` - Per plugin configuration. Version of plugin to be installed by NPM.
 
 #### Plugin configuration
