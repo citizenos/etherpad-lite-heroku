@@ -13,6 +13,7 @@ var _ = require('./libs/lodash.custom');
 
 var settingsLocal = null; // Your local config in '/config/local.json'
 var settingsEnv = null; // Settings defined in environment variable 'ETHERPAD_SETTINGS'
+var settingsDb = null; // DB settings derived from `DATABASE_URL` variable set by Heroku
 
 console.log('Checking for config/local.json...');
 try {
@@ -39,8 +40,16 @@ if (!settingsLocal && !settingsEnv) {
     process.exit(1);
 }
 
+// Lets see if Herokus default DATABASE_URL is set in the ENV and override DB settings
+var databaseUrl = process.env.DATABASE_URL;
+if (databaseUrl) {
+    settingsDb = {};
+    settingsDb.dbType = databaseUrl.split(':')[0];
+    settingsDb.dbSettings = databaseUrl + '?ssl=true';
+}
+
 console.log('Mergeing config/local.json and "ETHERPAD_SETTINGS" configuration...');
-var settings = _.merge(settingsLocal || {}, settingsEnv || {});
+var settings = _.merge(settingsLocal || {}, settingsEnv || {}, settingsDb || {});
 
 console.log('Effective configuration is:\n', JSON.stringify(settings, null, 2));
 
