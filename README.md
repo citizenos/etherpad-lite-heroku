@@ -52,7 +52,7 @@ Push it to your Heroku and Heroku will just run it picking up the entry point fr
 
 #### Locally
 
-* `npm run stard-dev`
+* `npm run start-dev`
 
 ## Credits
  
