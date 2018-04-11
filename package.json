@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Deploy Etherpad-Lite on Heroku. Whole configuration can be defined in env or config/local.json.",
   "scripts": {
-    "preinstall": "node preinstall.js",
+    "heroku-prebuild": "node herokuPrebuild.js",
     "start-dev": "npm run heroku-prebuild && NODE_ENV=development NODE_TLS_REJECT_UNAUTHORIZED=0 node start.js",
     "restore-original-package": "mv package.json.backup package.json"
   },
