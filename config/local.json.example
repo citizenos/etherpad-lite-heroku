@@ -1,0 +1,114 @@
+{
+  "___apiKey": "dL4GrW1WYIG4WQliTK5ZLdVjyDj64Lpno9GsS3Pg5W5UGupKg6ufksWxmvgG",
+  "___sessionKey": "sn52jBlM6aUXVB89vvAHNoMxJShcR25ZhEY4FxIsdL4GrW1WYIG4W",
+  "title": "Etherpad-Lite / CitizenOS",
+  "favicon": "favicon.ico",
+  "ssl": false,
+  "dbType": "postgres",
+  "dbSettings": "postgres://etherpad:etherpad@localhost:5433/etherpad",
+  "defaultPadText": "Topic content here..",
+  "requireSession": false,
+  "editOnly": true,
+  "sessionNoPassword": false,
+  "minify": false,
+  "maxAge": 21600,
+  "abiword": null,
+  "requireAuthentication": true,
+  "requireAuthorization": true,
+  "trustProxy": true,
+  "disableIPlogging": false,
+  "socketTransportProtocols": [
+    "xhr-polling",
+    "jsonp-polling",
+    "htmlfile"
+  ],
+  "loglevel": "DEBUG",
+  "logconfig": {
+    "appenders": [
+      {
+        "type": "console"
+      }
+    ]
+  },
+  "padOptions": {
+    "noColors": true,
+    "showControls": true,
+    "showChat": false,
+    "showLineNumbers": false,
+    "useMonospaceFont": false,
+    "userName": false,
+    "userColor": false,
+    "rtl": false,
+    "alwaysShowChat": false,
+    "chatAndUsers": false,
+    "lang": "en-gb"
+  },
+  "toolbar": {
+    "left": [
+      [
+        "bold",
+        "italic",
+        "underline",
+        "strikethrough"
+      ],
+      [
+        "orderedlist",
+        "unorderedlist",
+        "indent",
+        "outdent"
+      ],
+      [
+        "alignLeft",
+        "alignCenter",
+        "alignRight"
+      ],
+      [
+        "undo",
+        "redo"
+      ]
+    ],
+    "right": [
+      [
+        "addImage"
+      ],
+      [
+        "timeslider"
+      ]
+    ],
+    "timeslider": [
+      [
+        "timeslider_returnToPad"
+      ]
+    ]
+  },
+  "ep_align": {
+    "___version": "git+https://github.com/ilmartyrk/ep_align"
+  },
+  "ep_authorship_toggle": {
+    "___version": "0.0.3"
+  },
+  "ep_embed_floating_toolbar": {
+    "___version": "0.0.3"
+  },
+  "ep_font_color": {
+    "___version": "git+https://github.com/citizenos/ep_font_color"
+  },
+  "ep_font_size": {
+    "___version": "git+https://github.com/citizenos/ep_font_size"
+  },
+  "ep_headings2": {
+    "___version": "git+https://github.com/citizenos/ep_headings2"
+  },
+  "ep_resize": {
+    "___version": "0.0.5"
+  },
+  "ep_webhooks": {
+    "___version": "1.0.2",
+    "apiKey": "YOURSECRETKEHERE",
+    "pads": {
+      "update": [
+        "https://citizenos.com/api/internal/notifications/pads/update"
+      ]
+    }
+  }
+}
