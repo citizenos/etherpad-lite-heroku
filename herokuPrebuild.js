@@ -43,6 +43,8 @@ if (!settingsLocal && !settingsEnv) {
 // Lets see if Herokus default DATABASE_URL is set in the ENV and override DB settings
 var databaseUrl = process.env.DATABASE_URL;
 if (databaseUrl) {
+    console.log('Overriding database configuration from DATABASE_URL!');
+
     settingsDb = {};
     settingsDb.dbType = databaseUrl.split(':')[0];
     settingsDb.dbSettings = databaseUrl + '?ssl=true';
