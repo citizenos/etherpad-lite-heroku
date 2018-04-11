@@ -23,6 +23,7 @@ Standard:
 
 Non-standard:
 
+* `DATABASE_URL` - Default database URI environment variable set by Heroku. It overrides all other DB configurations.
 * `___apiKey` - The secret stored in Etherpad-Lite `APIKEY.txt`.
 * `___sessionKey` - The secret stored in Etherpad-Lite `SESSIONKEY.txt`.
 * `___version` - Per plugin configuration. Version of plugin to be installed by NPM.
