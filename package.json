@@ -27,5 +27,8 @@
     "ep_webhooks": "1.0.2",
     "kexec": "2.0.2",
     "lodash": "4.11.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1"
   }
 }
