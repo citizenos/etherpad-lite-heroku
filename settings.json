@@ -87,10 +87,10 @@
   },
   "ep_themes_ext": {
     "default": [
-      "https://citizenos.com/static/styles/etherpad.css"
+      "https://app.citizenos.com/styles/etherpad.css"
     ],
     "citizenos.com": [
-      "https://citizenos.com/static/styles/etherpad.css"
+      "https://app.citizenos.com/styles/etherpad.css"
     ],
     "rahvaalgatus.ee": [
       "https://rahvaalgatus.ee/css/editorless.css"
