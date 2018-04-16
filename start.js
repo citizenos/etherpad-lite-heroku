@@ -94,7 +94,7 @@ childProcess.execSync(pluginInstallCommand, {stdio: [0, 1, 2]});
 childProcess.execSync('./installPackages.sh', {stdio: [0, 1, 2]});
 
 var pathSettings = path.resolve('./etherpad-lite/settings.json');
-logger.info('\nWrite settings.json file which is read by EP to');
+logger.info('\nWrite settings.json file which is read by EP to ' + pathSettings);
 try {
     fs.writeFileSync(pathSettings, JSON.stringify(settings, null, 2));
     logger.info('Settings.json written to ' + pathSettings);
