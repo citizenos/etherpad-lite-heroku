@@ -2,6 +2,7 @@
 
 var kexec = require('kexec');
 var fs = require('fs');
+var path = require('path');
 var _ = require('lodash');
 var childProcess = require('child_process');
 var log4js = require('log4js');
@@ -92,12 +93,13 @@ logger.info('Installing plugins...', pluginInstallCommand);
 childProcess.execSync(pluginInstallCommand, {stdio: [0, 1, 2]});
 childProcess.execSync('./installPackages.sh', {stdio: [0, 1, 2]});
 
-logger.info('\nWrite settings.json file which is read by EP...');
+var pathSettings = path.resolve('./etherpad-lite/settings.json');
+logger.info('\nWrite settings.json file which is read by EP to');
 try {
-    fs.writeFileSync('./etherpad-lite/settings.json', JSON.stringify(settings, null, 2));
-    logger.info('Settings.json written "./etherpad-lite/settings.json"');
+    fs.writeFileSync(pathSettings, JSON.stringify(settings, null, 2));
+    logger.info('Settings.json written to ' + pathSettings);
 } catch (err) {
-    logger.error('Settings.json write FAILED!', err);
+    logger.error('Settings.json write FAILED to ' + pathSettings, err);
     process.exit(1);
 }
 logger.info('Configuration done! \n');
