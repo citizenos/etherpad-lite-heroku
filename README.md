@@ -1,6 +1,8 @@
 # Etherpad-Lite Heroku
 
 Deploy Etherpad-Lite on Heroku. Whole Etherpad-Lite configuration, including plugins, can be specified in Heroku configuration variables (ENV).
+
+**WARNING!** The project installs a fork of Etherpad-Lite as a submodule. The fork contains a fix that is NOT merged to Etherpad-Lit code base, as it will break plugins that do their own logic on HTML export. The pull request - https://github.com/ether/etherpad-lite/pull/3268
  
 ## Running
 
