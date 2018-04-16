@@ -4,7 +4,7 @@
   "description": "Deploy Etherpad-Lite on Heroku. Whole configuration can be defined in env or config/local.json.",
   "scripts": {
     "start-dev": "npm install && NODE_ENV=development NODE_TLS_REJECT_UNAUTHORIZED=0 node start.js",
-    "heroku-prebuild": "cd etherpad-lite/src/node_modules && npm install"
+    "heroku-prebuild": "cd etherpad-lite/src && npm install"
   },
   "cacheDirectories": [
     "node_modules",
