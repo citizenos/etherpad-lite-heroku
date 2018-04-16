@@ -1,7 +1,7 @@
 {
   "___apiKey": "dL4GrW1WYIG4WQliTK5ZLdVjyDj64Lpno9GsS3Pg5W5UGupKg6ufksWxmvgG",
   "___sessionKey": "sn52jBlM6aUXVB89vvAHNoMxJShcR25ZhEY4FxIsdL4GrW1WYIG4W",
-  "title": "Etherpad-Lite / CitizenOS",
+  "title": "Etherpad-Lite Heroku",
   "favicon": "favicon.ico",
   "ssl": false,
   "dbType": "postgres",
