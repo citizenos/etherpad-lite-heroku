@@ -61,11 +61,11 @@
         "alignRight"
       ],
       [
-        "undo",
-        "redo"
+        "addImage"
       ],
       [
-        "addImage"
+        "undo",
+        "redo"
       ]
     ],
     "right": [
@@ -87,10 +87,10 @@
   },
   "ep_themes_ext": {
     "default": [
-      "https://citizenos.com/static/styles/etherpad.css"
+      "https://app.citizenos.com/styles/etherpad.css"
     ],
     "citizenos.com": [
-      "https://citizenos.com/static/styles/etherpad.css"
+      "https://app.citizenos.com/styles/etherpad.css"
     ],
     "rahvaalgatus.ee": [
       "https://rahvaalgatus.ee/css/editorless.css"
@@ -118,7 +118,8 @@
     }
   },
   "ep_image_upload": {
-    "s3": {
+    "storage": {
+      "type": "S3",
       "accessKeyId": "AWS_ACCESS_KEY_ID",
       "secretAccessKey": "AWS_SECRET_ACCESS_KEY",
       "region": "AWS_REGION",
