@@ -104,6 +104,9 @@ try {
 }
 logger.info('Configuration done! \n');
 
+logger.debug('Etherpad-lite directory contents');
+childProcess.execSync('ls -la etherpad-lite', {stdio: [0, 1, 2]});
+
 // Run the Etherpad itself. Using kexec so that the current process would get replaced with the new one
 if (process.env.ETHERPAD_ALLOW_ROOT) {
     kexec('./etherpad-lite/bin/run.sh --root');
