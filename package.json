@@ -5,10 +5,6 @@
   "scripts": {
     "start-dev": "npm install && NODE_ENV=development NODE_TLS_REJECT_UNAUTHORIZED=0 node start.js"
   },
-  "cacheDirectories": [
-    "node_modules",
-    "etherpad_lite/node_modules"
-  ],
   "engines": {
     "node": "6.13.1",
     "npm": "3.10.10"
