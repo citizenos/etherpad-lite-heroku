@@ -19,7 +19,7 @@ try {
     settingsLocal = require('./config/local.json');
     logger.info('local.json found!');
 } catch (err) {
-    logger.info('local.json NOT found!')
+    logger.info('local.json NOT found!', err)
 }
 
 logger.info('Checking for environment variable "ETHERPAD_SETTINGS"...');
