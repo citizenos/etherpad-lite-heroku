@@ -36,7 +36,7 @@ Things in context: None
 This function is called after a specific plugin is initialized. This would probably be more useful than the previous two functions if you only wanted to add in features to one specific plugin.
 
 ## expressConfigure
-Called from: src/node/server.js
+Called from: src/node/hooks/express.js
 
 Things in context:
 
@@ -45,7 +45,7 @@ Things in context:
 This is a helpful hook for changing the behavior and configuration of the application. It's called right after the application gets configured.
 
 ## expressCreateServer
-Called from: src/node/server.js
+Called from: src/node/hooks/express.js
 
 Things in context:
 
@@ -72,7 +72,7 @@ Available blocks in `pad.html` are:
  * `editbarMenuRight` - right tool bar
  * `afterEditbar` - allows you to add stuff immediately after the toolbar
  * `userlist` - the contents of the userlist dropdown
- * `loading` - the intial loading message
+ * `loading` - the initial loading message
  * `mySettings` - the left column of the settings dropdown ("My view"); intended for adding checkboxes only
  * `mySettings.dropdowns` - add your dropdown settings here
  * `globalSettings` - the right column of the settings dropdown ("Global view")
@@ -104,9 +104,21 @@ Things in context:
 
 Here you can add custom toolbar items that will be available in the toolbar config in `settings.json`. For more about the toolbar controller see the API section.
 
-Usage examples: 
+Usage examples:
 
-* [https://github.com/tiblu/ep_authorship_toggle]()
+* https://github.com/tiblu/ep_authorship_toggle
+
+## onAccessCheck
+Called from: src/node/db/SecurityManager.js
+
+Things in context:
+
+1. padID - the pad the user wants to access
+2. password - the password the user has given to access the pad
+3. token - the token of the author
+4. sessionCookie - the session the use has
+
+This hook gets called when the access to the concrete pad is being checked. Return `false` to deny access.
 
 ## padCreate
 Called from: src/node/db/Pad.js
@@ -125,7 +137,7 @@ Things in context:
 
 1. pad - the pad instance
 
-This hook gets called when an pad was loaded. If a new pad was created and loaded this event will be emitted too.
+This hook gets called when a pad was loaded. If a new pad was created and loaded this event will be emitted too.
 
 ## padUpdate
 Called from: src/node/db/Pad.js
@@ -137,6 +149,20 @@ Things in context:
 
 This hook gets called when an existing pad was updated.
 
+## padCopy
+Called from: src/node/db/Pad.js
+
+Things in context:
+
+1. originalPad - the source pad instance
+2. destinationID - the id of the pad copied from originalPad
+
+This hook gets called when an existing pad was copied.
+
+Usage examples:
+
+* https://github.com/ether/ep_comments
+
 ## padRemove
 Called from: src/node/db/Pad.js
 
@@ -145,6 +171,10 @@ Things in context:
 1. padID
 
 This hook gets called when an existing pad was removed/deleted.
+
+Usage examples:
+
+* https://github.com/ether/ep_comments
 
 ## socketio
 Called from: src/node/hooks/express/socketio.js
@@ -201,7 +231,7 @@ Things in context:
 1. message - the message being handled
 2. client - the client object from socket.io
 
-This hook will be called once a message arrive. If a plugin calls `callback(null)` the message will be dropped. However it is not possible to modify the message.
+This hook will be called once a message arrive. If a plugin calls `callback(null)` the message will be dropped. However, it is not possible to modify the message.
 
 Plugins may also decide to implement custom behavior once a message arrives.
 
@@ -254,7 +284,7 @@ Things in context:
 1. clientVars - the basic `clientVars` built by the core
 2. pad - the pad this session is about
 
-This hook will be called once a client connects and the `clientVars` are being sent. Plugins can use this hook to give the client a initial configuriation, like the tracking-id of an external analytics-tool that is used on the client-side. You can also overwrite values from the original `clientVars`.
+This hook will be called once a client connects and the `clientVars` are being sent. Plugins can use this hook to give the client an initial configuration, like the tracking-id of an external analytics-tool that is used on the client-side. You can also overwrite values from the original `clientVars`.
 
 Example:
 
@@ -379,7 +409,7 @@ Things in context:
 
 1. Pad object
 
-Identical to `exportHtmlAdditionalTags`, but for tags that are stored with an specific value (not simply `true`) on the attribute pool. For example `['color', 'red']`, instead of `['bold', true]`. This hook will allow a plug-in developer to include more properties and attributes to support during HTML Export. An Array of arrays should be returned. The exported HTML will contain tags like `<span data-color="red">` for the content where attributes are `['color', 'red']`.
+Identical to `exportHtmlAdditionalTags`, but for tags that are stored with a specific value (not simply `true`) on the attribute pool. For example `['color', 'red']`, instead of `['bold', true]`. This hook will allow a plug-in developer to include more properties and attributes to support during HTML Export. An Array of arrays should be returned. The exported HTML will contain tags like `<span data-color="red">` for the content where attributes are `['color', 'red']`.
 
 Example:
 ```
