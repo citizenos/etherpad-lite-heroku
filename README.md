@@ -6,6 +6,12 @@ Deploy Etherpad-Lite on Heroku. Whole Etherpad-Lite configuration, including plu
  
 ## Running
 
+### Cloning
+
+As the project has Etherpad as submodule, you need to clone it with `--recursive` flag:
+
+`git clone --recursive git@github.com:citizenos/etherpad-lite-heroku.git`
+
 ### Configuration
 
 Configuration can be specified in 2 ways:
