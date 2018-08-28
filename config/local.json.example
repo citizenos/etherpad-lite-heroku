@@ -65,9 +65,6 @@
       [
         "undo",
         "redo"
-      ],
-      [
-        "addImage"
       ]
     ],
     "right": [
