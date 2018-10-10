@@ -1,4 +1,4 @@
 [submodule "etherpad-lite"]
 	path = etherpad-lite
 	url = https://github.com/citizenos/etherpad-lite.git
-	branch = develop
+	branch = master
