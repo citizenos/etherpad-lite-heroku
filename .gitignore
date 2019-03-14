@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-node_modules/*
-*~
-config/local.json
-package.json.backup
-=======
 node_modules
 settings.json
 !settings.json.template
@@ -25,4 +19,3 @@ npm-debug.log
 bin/etherpad-1.deb
 credentials.json
 out/
->>>>>>> 62a7924edd29b724870cb7a5913006f05dd72636
