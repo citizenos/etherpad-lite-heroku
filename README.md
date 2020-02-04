@@ -1,8 +1,6 @@
 # Etherpad-Lite Heroku
 
 Deploy Etherpad-Lite on Heroku. Whole Etherpad-Lite configuration, including plugins, can be specified in Heroku configuration variables (ENV).
-
-**WARNING!** The project installs a fork of Etherpad-Lite as a submodule. The fork contains a fix that is NOT merged to Etherpad-Lite code base, as it will break plugins that do their own logic on HTML export. The pull request - https://github.com/ether/etherpad-lite/pull/3268
  
 ## Running
 
@@ -65,6 +63,8 @@ Push it to your Heroku and Heroku will just run it picking up the entry point fr
 #### Locally
 
 * `npm run start-dev`
+
+**NOTE:** When running locally with Citizen OS API, you may run into issues with certificate chain validation because of the API calls. In that case for **DEV ONLY** you can turn off the validation starting the app `NODE_TLS_REJECT_UNAUTHORIZED=0 npm run start-dev`.
 
 ## Credits
  
