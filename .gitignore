@@ -19,3 +19,6 @@ npm-debug.log
 bin/etherpad-1.deb
 credentials.json
 out/
+config/local.json
+config/local_ep_performance_test.json
+.idea
