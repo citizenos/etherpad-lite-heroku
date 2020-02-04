@@ -66,6 +66,8 @@ Push it to your Heroku and Heroku will just run it picking up the entry point fr
 
 * `npm run start-dev`
 
+**NOTE:** When running locally with Citizen OS API, you may run into issues with certificate chain validation because of the API calls. In that case for **DEV ONLY** you can turn off the validation starting the app `NODE_TLS_REJECT_UNAUTHORIZED=0 npm run start-dev`.
+
 ## Credits
  
 * This project started as a fork of https://github.com/bright-star/etherpad-lite-heroku and basic concepts are borrowed from there.
