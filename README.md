@@ -65,6 +65,7 @@ Push it to your Heroku and Heroku will just run it picking up the entry point fr
 * `npm run start-dev`
 
 **NOTE:** When running locally with Citizen OS API, you may run into issues with certificate chain validation because of the API calls. In that case for **DEV ONLY** you can turn off the validation starting the app `NODE_TLS_REJECT_UNAUTHORIZED=0 npm run start-dev`.
+**NOTE2:** DO NOT commit the generated `package.json`. If generated plugin configuration is in the `package.json` `/config/` has no effect.
 
 ## Credits
  
