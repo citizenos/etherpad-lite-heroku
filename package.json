@@ -35,7 +35,7 @@
     "ep_resize": "git+https://github.com/citizenos/ep_resize.git#a7efabc45cdf839308de9bc9285a63d6236396fe",
     "ep_themes_ext": "git+https://github.com/ilmartyrk/ep_themes_ext.git#9adb6e3d05cce504659d7ec364afb2d671cb4c16",
     "ep_title_limit": "git+https://github.com/citizenos/ep_title_limit.git#8a431601129c73204259644865f335bcd696d601",
-    "ep_translations": "0.0.2",
+    "ep_translations": "git+https://github.com/citizenos/ep_translations.git#a70998524d92e9462c15ffc38da004cc60c18f1d",
     "ep_webhooks": "^1.0.3",
     "kexec": "3.0.0",
     "lodash": "4.17.15",
