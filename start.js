@@ -76,7 +76,7 @@ if (etherpadSessionKey) {
 }
 
 logger.info('\nFind plugin configuration from effective settings...');
-var pluginInstallCommand = 'npm install';
+var pluginInstallCommand = 'npm install --prefer-offline --audit=false --progress=false';
 Object.keys(settings).forEach(function (key) {
     if (key.match(/ep_/)) {
         var version = settings[key].___version;
