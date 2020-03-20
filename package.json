@@ -8,9 +8,7 @@
   },
   "cacheDirectories": [
     "node_modules",
-    "etherpad-lite/src/node_modules",
-    "etherpad-lite/node_modules",
-    "src/node_modules"
+    "etherpad-lite/src/node_modules"
   ],
   "engines": {
     "node": "10.13.0",
