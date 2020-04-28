@@ -142,25 +142,6 @@
       "https://uuseakus.rahvaalgatus.ee/assets/etherpad.css"
     ]
   },
-  "ep_image_upload": {
-    "___version": "1.0.7",
-    "storage": {
-      "type": "S3",
-      "accessKeyId": "AKIAJ6OWITKC4YN7RVMQ",
-      "secretAccessKey": "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",
-      "region": "eu-west-1",
-      "bucket": "citizenos-prod",
-      "baseFolder": "ep"
-    },
-    "fileTypes": [
-      "jpeg",
-      "jpg",
-      "bmp",
-      "gif",
-      "png"
-    ],
-    "maxFileSize": 5000000
-  },
   "ep_page_view": {
     "___version": "0.5.24"
   },
