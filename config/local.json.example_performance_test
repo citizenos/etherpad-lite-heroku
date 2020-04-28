@@ -1,0 +1,180 @@
+{
+  "___version": "1.6.5",
+  "___apiKey": "LUVORFBXdUhrb0RMLXhzekREcXpjR1NsU1BBeTZRWmJGRUR4blZpX3YzYjJRa3FZ",
+  "___sessionKey": "99543c6ae47c63fa498890a8f7467f414dcb2ee1fe23cfb4b71607eabaa0aa6b",
+  "title": "Etherpad-Lite / CitizenOS",
+  "favicon": "favicon.ico",
+  "ip": "0.0.0.0",
+  "port": 9001,
+  "ssl": {
+    "key": "/home/m/dev/citizenos-api/config/certs/dev.p.citizenos.com.key",
+    "cert": "/home/m/dev/citizenos-api/config/certs/dev.p.citizenos.com.crt"
+  },
+  "dbType": "postgres",
+  "dbSettings": "postgres://etherpad:etherpad@localhost:5432/etherpad",
+  "defaultPadText": "Topic content here..",
+  "requireSession": false,
+  "editOnly": true,
+  "sessionNoPassword": false,
+  "minify": false,
+  "maxAge": 21600,
+  "abiword": null,
+  "requireAuthentication": true,
+  "requireAuthorization": true,
+  "trustProxy": true,
+  "disableIPlogging": false,
+  "socketTransportProtocols": [
+    "xhr-polling",
+    "jsonp-polling",
+    "htmlfile"
+  ],
+  "loglevel": "DEBUG",
+  "logconfig": {
+    "appenders": [
+      {
+        "type": "console"
+      }
+    ]
+  },
+  "padOptions": {
+    "noColors": true,
+    "showControls": true,
+    "showChat": false,
+    "showLineNumbers": false,
+    "useMonospaceFont": false,
+    "userName": false,
+    "userColor": false,
+    "rtl": false,
+    "alwaysShowChat": false,
+    "chatAndUsers": false,
+    "lang": "en-gb"
+  },
+  "toolbar": {
+    "left": [
+      [
+        "bold",
+        "italic",
+        "underline",
+        "strikethrough"
+      ],
+      [
+        "orderedlist",
+        "unorderedlist",
+        "indent",
+        "outdent"
+      ],
+      [
+        "alignLeft",
+        "alignCenter",
+        "alignRight"
+      ],
+      [
+        "undo",
+        "redo"
+      ],
+      [
+        "addImage",
+        "addFootNote",
+        "fontColor"
+      ]
+    ],
+    "right": [
+      [
+        "timeslider"
+      ],
+      [
+        "epAuthorshipToggle"
+      ],
+      [
+        "epCitizenOSUserListToggle"
+      ]
+    ],
+    "timeslider": [
+      [
+        "timeslider_returnToPad"
+      ]
+    ],
+    "inline": [
+      [
+        {
+          "addComment": {
+            "buttonType": "link",
+            "title": "Add new comment",
+            "localizationId": "ep_comments_page.add_comment.title"
+          }
+        }
+      ]
+    ]
+  },
+  "ep_align": {
+    "___version": "0.0.24"
+  },
+  "ep_authorship_toggle": {
+    "___version": "0.0.3"
+  },
+  "ep_embed_floating_toolbar": {
+    "___version": "0.0.3"
+  },
+  "ep_font_color": {
+    "___version": "git+https://github.com/citizenos/ep_font_color"
+  },
+  "ep_font_size": {
+    "___version": "git+https://github.com/citizenos/ep_font_size#0079fae7ba226f83a81905a3638093cbe5a74b34"
+  },
+  "ep_headings2": {
+    "___version": "git+https://github.com/citizenos/ep_headings2"
+  },
+  "ep_resize": {
+    "___version": "git+https://github.com/citizenos/ep_resize#87c057ef8bdaecbba8b9c6168baf32ba67b65f0b"
+  },
+  "ep_themes_ext": {
+    "___version": "git+https://github.com/ilmartyrk/ep_themes_ext#9adb6e3d05cce504659d7ec364afb2d671cb4c16",
+    "default": [
+      "https://app.citizenos.com/styles/etherpad.css"
+    ],
+    "citizenos.com": [
+      "https://app.citizenos.com/styles/etherpad.css"
+    ],
+    "b563ee8c-ba8e-4cd6-b592-fbcd4e8f22bb": [
+      "https://rahvaalgatus.ee/assets/etherpad.css"
+    ],
+    "a4cc118f-69f3-4708-8f84-d3f46ad1d63b": [
+      "https://uuseakus.rahvaalgatus.ee/assets/etherpad.css"
+    ]
+  },
+  "ep_image_upload": {
+    "___version": "1.0.7",
+    "storage": {
+      "type": "S3",
+      "accessKeyId": "AKIAJ6OWITKC4YN7RVMQ",
+      "secretAccessKey": "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",
+      "region": "eu-west-1",
+      "bucket": "citizenos-prod",
+      "baseFolder": "ep"
+    },
+    "fileTypes": [
+      "jpeg",
+      "jpg",
+      "bmp",
+      "gif",
+      "png"
+    ],
+    "maxFileSize": 5000000
+  },
+  "ep_page_view": {
+    "___version": "0.5.24"
+  },
+  "ep_comments_page": {
+    "___version": "git+https://github.com/citizenos/ep_comments#928260730369458d38d89a7c43844196b728f3ce",
+    "displayCommentAsIcon": true,
+    "displayCommentsInModal": true,
+    "allowInlineClick": true
+  },
+  "ep_inline_toolbar": {
+    "___version": "git+https://github.com/citizenos/ep_inline_toolbar#18169a2ad8ae727904b7be2e2be2f2544adcc9d1",
+    "position": "right"
+  },
+  "ep_foot_note": {
+    "___version": "git+https://github.com/citizenos/ep_foot_note#809b403a1e7f819849a35198b18407befd100f41"
+  }
+}
