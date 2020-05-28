@@ -163,7 +163,7 @@ td, th {
   position: absolute;
   top: 0; left: 0; bottom:0; right:0;
   padding: auto;
-  
+
   background: rgb(255,255,255);
   display: none;
 }
@@ -222,7 +222,7 @@ pre {
   word-wrap: break-word;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 800px) {
   div.innerwrapper {
     padding: 0 15px 15px 15px;
   }

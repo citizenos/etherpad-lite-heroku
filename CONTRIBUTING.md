@@ -10,7 +10,7 @@
 * contain meaningful and detailed **commit messages** in the form:
   ```
   submodule: description
-  
+
   longer description of the change you have made, eventually mentioning the
   number of the issue that is being fixed, in the form: Fixes #someIssueNumber
   ```
@@ -119,7 +119,7 @@ Back-end tests can be run from the `src` directory, via `npm test`.
 
 ## Things you can help with
 Etherpad is much more than software.  So if you aren't a developer then worry not, there is still a LOT you can do!  A big part of what we do is community engagement.  You can help in the following ways
- * Triage bugs (applying labels) and confirming their existance
+ * Triage bugs (applying labels) and confirming their existence
  * Testing fixes (simply applying them and seeing if it fixes your issue or not) - Some git experience required
  * Notifying large site admins of new releases
  * Writing Changelogs for releases
@@ -130,5 +130,4 @@ Etherpad is much more than software.  So if you aren't a developer then worry no
  * Co-Author and Publish CVEs
  * Work with SFC to maintain legal side of project
  * Maintain TODO page - https://github.com/ether/etherpad-lite/wiki/TODO#IMPORTANT_TODOS
- * Replying to messages on IRC / The Mailing list / Emails
-  
+
