@@ -19,11 +19,6 @@ npm-debug.log
 bin/etherpad-1.deb
 credentials.json
 out/
-<<<<<<< HEAD
-config/local.json
-config/local_ep_performance_test.json
-=======
 .nyc_output
 ./package-lock.json
->>>>>>> 6a0f73d1379b4b97df1ffb20566f64eac3b09ccc
 .idea
