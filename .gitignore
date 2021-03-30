@@ -22,3 +22,5 @@ out/
 .nyc_output
 ./package-lock.json
 .idea
+config/local.json
+config/local.backup.json
