@@ -62,6 +62,12 @@ Push it to your Heroku and Heroku will just run it picking up the entry point fr
 
 #### Locally
 
+After first checkout:
+
+* Run: `git submodule init && git submodule update` - this will update Etherpad submodule
+
+To run the app:
+
 * `npm run start-dev`
 
 **NOTE:** When running locally with Citizen OS API, you may run into issues with certificate chain validation because of the API calls. In that case for **DEV ONLY** you can turn off the validation starting the app `NODE_TLS_REJECT_UNAUTHORIZED=0 npm run start-dev`.
