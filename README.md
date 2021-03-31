@@ -60,7 +60,10 @@ Example plugin config in `ETHERPAD_SETTINGS` or `config/local.json`:
 
 Push it to your Heroku and Heroku will just run it picking up the entry point from [Procfile](Procfile)
 
-#### Locally
+
+### Development notes
+
+#### Running locally
 
 After first checkout:
 
@@ -73,9 +76,25 @@ To run the app:
 **NOTE:** When running locally with Citizen OS API, you may run into issues with certificate chain validation because of the API calls. In that case for **DEV ONLY** you can turn off the validation starting the app `NODE_TLS_REJECT_UNAUTHORIZED=0 npm run start-dev`.
 **NOTE2:** DO NOT commit the generated `package.json`. If generated plugin configuration is in the `package.json` `/config/` has no effect.
 
-## Development notes
+#### Developing and testing EP plugins with this project
 
-* While Etherpad runs, it takes the plugin code from `./etherpad-lite/node_modules`.
+* Run ONCE: `git submodule init && git submodule update` - this will update Etherpad submodule
+* Run ONCE & KILL after EP starts successfully `npm run start-dev` - Reads your local configuration (env + `local.json`), prepares it for Etherpad and installs all Etherpad dependences.  
+* Run & leave running: `./bin/scripts/sync ${ABS_PATH_TO_YOUR_PLUGIN}` (ex: `./bin/scripts/sync.sh /home/m/dev/ep_auth_citizenos`) - this will sync your local plugin checkout to directory Etherpad uses on runtime.
+    * **NOTE:** Symlinks cannot be used as plugin fails to resolve dependencies correctly.
+* Run Etherpad `NODE_TLS_REJECT_UNAUTHORIZED=0 ./etherpad-lite/bin/fastRun.sh` - Runs Etherpad without installing dependencies, uses your local plugin code if sync mentioned above is active. 
+    * **NOTE:** You do need to restart EP for changes in plugins server side code.
+    
+#### Upgrading Etherpad
+
+Etherpad is bundled as a Git submodule to this project. 
+
+To update Etherpad version:
+
+* Find the specific commit hash of the release.
+* `cd ./etherpad-lite && git checkout master && git pull && git checkout ${EP_NEW_VERSION_COMMIT_HASH} && cd ..`.
+* Update `.gitmodules` file, set the `branch = ${EP_NEW_VERSION_COMMIT_HASH}`.
+* `git commit -a -m "Upgrade Etherpad to version ${ETHERPAD_VERSION}"`.
 
 ## Credits
 
