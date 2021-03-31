@@ -41,7 +41,7 @@ if (!settingsLocal && !settingsEnv) {
 }
 
 // Lets see if Herokus default DATABASE_URL is set in the ENV and override DB settings
-var databaseUrl = process.env.DATABASE_URL;
+const databaseUrl = process.env.DATABASE_URL;
 if (databaseUrl) {
     logger.info('Overriding database configuration from DATABASE_URL!');
 
@@ -51,7 +51,33 @@ if (databaseUrl) {
 }
 
 logger.info('Mergeing config/local.json and "ETHERPAD_SETTINGS" configuration...');
-var settings = _.merge(settingsLocal || {}, settingsEnv || {}, settingsDb || {});
+const settings = _.merge(settingsLocal || {}, settingsEnv || {}, settingsDb || {});
+
+if (typeof settings.dbSettings === 'string') { // TODO: Remove IF this is fixed: https://github.com/ether/etherpad-lite/issues/4985
+    logger.info('DB configuration seems to be a string, parsing it into object. See  https://github.com/ether/etherpad-lite/issues/4985');
+
+    const dbSettingsString = settings.dbSettings;
+    let dbSettingsObject = null;
+
+    let [url, params] = dbSettingsString.split('?');
+    const matches = url.match(/^(?<type>.*?):\/\/(?<user>.*?)\:(?<password>.*?)@(?<host>.*?)\:(?<port>.*=?)\/(?<database>[^?]*)/);
+
+    if (matches && matches.groups) {
+        dbSettingsObject = matches.groups;
+        //Url params
+        if (params) {
+            const urlSearchParams = new URLSearchParams(params);
+            urlSearchParams.forEach(function (value, key) {
+                dbSettingsObject[key] = value;
+            });
+        }
+        settings.dbType = dbSettingsObject.type;
+        settings.dbSettings = dbSettingsObject;
+    } else {
+        logger.error('Invalid DB connection string provided as "dbSettings"', settingsDb.dbSettings);
+        process.exit(1);
+    }
+}
 
 logger.info('Effective configuration is:\n', JSON.stringify(settings, null, 2));
 
