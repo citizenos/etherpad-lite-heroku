@@ -60,7 +60,7 @@ Example plugin config in `ETHERPAD_SETTINGS` or `config/local.json`:
 
 Push it to your Heroku and Heroku will just run it picking up the entry point from [Procfile](Procfile)
 
-**NOTE!** As this project uses Etherpad as a submodule, Heroku autodeploys and deploys from web WILL NOT WORK as this do not check submodules. The only way to deploy is to push to Heroku manually:
+**NOTE!** As this project uses Etherpad as a submodule, **Heroku autodeploys and deploys from web WILL NOT WORK as these do not check out submodules**. **The only way to deploy is to push to Heroku manually using remotes**
 
 * Add a remote, if you do not have - for ex: `git remote add test https://git.heroku.com/citizenos-etherpad-web-test.git`.
 * Push to a remote to deploy: `git push test`.
