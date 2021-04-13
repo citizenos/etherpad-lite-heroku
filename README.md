@@ -65,6 +65,13 @@ Push it to your Heroku and Heroku will just run it picking up the entry point fr
 * Add a remote, if you do not have - for ex: `git remote add test https://git.heroku.com/citizenos-etherpad-web-test.git`.
 * Push to a remote to deploy: `git push test`.
 
+**NOTE2: YOU WILL probably get this error:**
+```
+2021-04-13T17:35:56.716031+00:00 heroku[web.1]: Error R10 (Boot timeout) -> Web process failed to bind to $PORT within 180 seconds of launch
+```
+Heroku has a fixed time for the app to boot and bind to a port. If it does not, "Boot timeout" error is thrown.
+YOU MUST ask Heroku Customer Support (no jokes, best in the world), to increase your boot timeout whatever maximum they alow. EP-Heroku boots long as the startup procedure involves long NPM install anddownloading plugins from NPM.
+
 
 ### Development notes
 
