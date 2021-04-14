@@ -1,5 +1,4 @@
 {
-  "___version": "1.6.5",
   "___apiKey": "LUVORFBXdUhrb0RMLXhzekREcXpjR1NsU1BBeTZRWmJGRUR4blZpX3YzYjJRa3FZ",
   "___sessionKey": "99543c6ae47c63fa498890a8f7467f414dcb2ee1fe23cfb4b71607eabaa0aa6b",
   "title": "Etherpad-Lite / CitizenOS",
@@ -11,7 +10,7 @@
     "cert": "/PATH/TO/CHECKOUT/citizenos-api/config/certs/dev.p.citizenos.com.crt"
   },
   "dbType": "postgres",
-  "dbSettings": "postgres://etherpad:etherpad@localhost:5433/etherpad",
+  "dbSettings": "postgres://etherpad:etherpad@localhost:5432/etherpad",
   "defaultPadText": "Topic content here..",
   "requireSession": false,
   "editOnly": true,
@@ -49,6 +48,7 @@
     "chatAndUsers": false,
     "lang": "en-gb"
   },
+  "skinVariants": "full-width-editor",
   "toolbar": {
     "left": [
       [
@@ -64,11 +64,17 @@
         "outdent"
       ],
       [
-        "addImage"
+        "alignLeft",
+        "alignCenter",
+        "alignRight"
       ],
       [
         "undo",
         "redo"
+      ],
+      [
+        "addFootNote",
+        "fontColor"
       ]
     ],
     "right": [
@@ -86,53 +92,32 @@
       [
         "timeslider_returnToPad"
       ]
+    ],
+    "custom_inline": [
+      [
+        {
+          "addComment": {
+            "buttonType": "link",
+            "title": "Add new comment",
+            "localizationId": "ep_comments_page.add_comment",
+            "class": "add-comment"
+          }
+        },
+        {
+          "createVote": {
+            "buttonType": "link",
+            "title": "Create new mini-vote",
+            "localizationId": "ep_inline_voting.title_create_voting"
+          }
+        }
+      ]
     ]
   },
   "ep_align": {
-    "___version": "git+https://github.com/ilmartyrk/ep_align"
-  },
-  "ep_authorship_toggle": {
-    "___version": "0.0.3"
-  },
-  "ep_embed_floating_toolbar": {
-    "___version": "0.0.3"
-  },
-  "ep_font_color": {
-    "___version": "git+https://github.com/citizenos/ep_font_color"
-  },
-  "ep_font_size": {
-    "___version": "git+https://github.com/citizenos/ep_font_size"
-  },
-  "ep_headings2": {
-    "___version": "git+https://github.com/citizenos/ep_headings2"
-  },
-  "ep_resize": {
-    "___version": "0.0.5"
-  },
-  "ep_themes_ext": {
-    "___version": "0.0.4",
-    "default": [
-      "https://dev.citizenos.com:3001/static/styles/etherpad.css"
-    ],
-    "citizenos.com": [
-      "https://dev.citizenos.com:3001/static/styles/etherpad.css"
-    ],
-    "rahvaalgatus.ee": [
-      "https://dev.rahvaalgatus.ee/css/editorless.css"
-    ]
-  },
-  "ep_webhooks": {
-    "___version": "1.0.2",
-    "apiKey": "superSecretAPIkeySentInXApiKeyHeader",
-    "caCert": "-----BEGIN CERTIFICATE-----\nMIIDoDCCAogCCQC85R3CVrF5aDANBgkqhkiG9w0BAQsFADCBkTELMAkGA1UEBhMC\nRUUxETAPBgNVBAgMCEhhcmp1bWFhMRAwDgYDVQQHDAdUYWxsaW5uMRIwEAYDVQQK\nDAlDaXRpemVuT1MxCzAJBgNVBAsMAklUMRQwEgYDVQQDDAtkZXYudG9ydS5lZTEm\nMCQGCSqGSIb3DQEJARYXY2l0aXplbm9zLmVzdEBnbWFpbC5jb20wHhcNMTUxMDAx\nMDkyMzE1WhcNNDMwMjE1MDkyMzE1WjCBkTELMAkGA1UEBhMCRUUxETAPBgNVBAgM\nCEhhcmp1bWFhMRAwDgYDVQQHDAdUYWxsaW5uMRIwEAYDVQQKDAlDaXRpemVuT1Mx\nCzAJBgNVBAsMAklUMRQwEgYDVQQDDAtkZXYudG9ydS5lZTEmMCQGCSqGSIb3DQEJ\nARYXY2l0aXplbm9zLmVzdEBnbWFpbC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IB\nDwAwggEKAoIBAQDYt0FCtIgu0NcKQ+6T+tUNtTChg8g/1xgR0KS4B9zqdoxHuE/8\nHvylHff/1ysmFEiaFX6aoo3ww1PSY7tJ38+ozkks8Ga3wWADVuCVWytu1gpznuDO\neLq/TJ7MMKuev1SFumpTjPuN3ppD25yyb30Ajx29e9xXO0oa6s5TFD1nzZiZRyHs\n36BPsD3Dk7P3q6OKuuP/AEJZC8vvAPDJXh1X9o1+vhQ7mOzISE6CoKc1FheOLMAQ\nKqkLlMPDJgSSNzAUhB+BbNanhynkRDfhQnIDUpJjjNx8vzHKLoPtfA+RSYgA6DOD\n8jDgTPaszKNQG2VYauLd4Tg/tQx+GdlbtIhpAgMBAAEwDQYJKoZIhvcNAQELBQAD\nggEBAD2OFnsFll4TqhlWD2zNbVz5nUIqPIQZKi6uSmLLZdsn61dVuIMqfd1awdxL\ntyLu8IxmFqjGJuKwTm1IzDlkjG7JXB9TXGjj994wkBfJeEK01iUrS24GU2kWU0DU\nFe7GHHNi+x0nSEf2tfwQJw+9+WkR5jfq7eyUPKqlm8aETLT0Hk20KF/Tew9q/LAw\n8tQ1BpjmB5uMw7YPhu41Ef/Fcd3myVGBBgVSAjJHgc6Tq29FsOqh7Fi7zFHr/u5k\nP0A4iFQAld2k1Jwq+18/Qq8k8Jnpyh7DhefLNMc0HVg3H+3sCSHSDv0fEAa+7mRm\nR3jc3Y4rDxpM56PM9r3c19aKOYc=\n-----END CERTIFICATE-----",
-    "pads": {
-      "update": [
-        "https://dev.api.citizenos.com:3003/api/internal/notifications/pads/update"
-      ]
-    }
+    "___version": "0.3.15"
   },
   "ep_auth_citizenos": {
-    "___version": "git+https://github.com/citizenos/ep_auth_citizenos#275ebe5a6e8ead3503c784c94d304eda6ec0a03d",
+    "___version": "1.0.2",
     "jwt": {
       "publicKey": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4x3Ld7aV+QefkrdISdws\nNFP2nxIpY/vVffttUxrBmQ8FKZTP72uRfJ4p7TafP2AY69UKS9uKemKQs/E9U4yy\nYgKPTD1m3fzs6THh0fwP8Et6qinQI5HP+OcuRDm95q3GoLk4gcF4EKcAFZA2JrFC\nSWWhiJ7qCb++fM3bFcy1i10VoLUaLNJxhkwxOrk15QPgR8uFvLqDIzvJn3GuKpkk\nunvU8VZ2vucCVUH91JPY23iNukGuUE/e+b8H9oyi/vomRpU3zNIKCrk/fynyPAhM\npQWaOT4cNibHOS+KNqJpCKKi3xvfxb+fZvX9sVKLzbibCj2vSL8wjUyayw0zOfnY\n1QIDAQAB\n-----END PUBLIC KEY-----\n",
       "algorithms": [
@@ -144,10 +129,38 @@
       "apiKey": "superSecretAPIkeySentInXApiKeyHeader",
       "caCert": "-----BEGIN CERTIFICATE-----\nMIIDoDCCAogCCQC85R3CVrF5aDANBgkqhkiG9w0BAQsFADCBkTELMAkGA1UEBhMC\nRUUxETAPBgNVBAgMCEhhcmp1bWFhMRAwDgYDVQQHDAdUYWxsaW5uMRIwEAYDVQQK\nDAlDaXRpemVuT1MxCzAJBgNVBAsMAklUMRQwEgYDVQQDDAtkZXYudG9ydS5lZTEm\nMCQGCSqGSIb3DQEJARYXY2l0aXplbm9zLmVzdEBnbWFpbC5jb20wHhcNMTUxMDAx\nMDkyMzE1WhcNNDMwMjE1MDkyMzE1WjCBkTELMAkGA1UEBhMCRUUxETAPBgNVBAgM\nCEhhcmp1bWFhMRAwDgYDVQQHDAdUYWxsaW5uMRIwEAYDVQQKDAlDaXRpemVuT1Mx\nCzAJBgNVBAsMAklUMRQwEgYDVQQDDAtkZXYudG9ydS5lZTEmMCQGCSqGSIb3DQEJ\nARYXY2l0aXplbm9zLmVzdEBnbWFpbC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IB\nDwAwggEKAoIBAQDYt0FCtIgu0NcKQ+6T+tUNtTChg8g/1xgR0KS4B9zqdoxHuE/8\nHvylHff/1ysmFEiaFX6aoo3ww1PSY7tJ38+ozkks8Ga3wWADVuCVWytu1gpznuDO\neLq/TJ7MMKuev1SFumpTjPuN3ppD25yyb30Ajx29e9xXO0oa6s5TFD1nzZiZRyHs\n36BPsD3Dk7P3q6OKuuP/AEJZC8vvAPDJXh1X9o1+vhQ7mOzISE6CoKc1FheOLMAQ\nKqkLlMPDJgSSNzAUhB+BbNanhynkRDfhQnIDUpJjjNx8vzHKLoPtfA+RSYgA6DOD\n8jDgTPaszKNQG2VYauLd4Tg/tQx+GdlbtIhpAgMBAAEwDQYJKoZIhvcNAQELBQAD\nggEBAD2OFnsFll4TqhlWD2zNbVz5nUIqPIQZKi6uSmLLZdsn61dVuIMqfd1awdxL\ntyLu8IxmFqjGJuKwTm1IzDlkjG7JXB9TXGjj994wkBfJeEK01iUrS24GU2kWU0DU\nFe7GHHNi+x0nSEf2tfwQJw+9+WkR5jfq7eyUPKqlm8aETLT0Hk20KF/Tew9q/LAw\n8tQ1BpjmB5uMw7YPhu41Ef/Fcd3myVGBBgVSAjJHgc6Tq29FsOqh7Fi7zFHr/u5k\nP0A4iFQAld2k1Jwq+18/Qq8k8Jnpyh7DhefLNMc0HVg3H+3sCSHSDv0fEAa+7mRm\nR3jc3Y4rDxpM56PM9r3c19aKOYc=\n-----END CERTIFICATE-----",
       "cacheMaxAge": 60000
+    },
+    "authorSync": {
+      "url": "https://dev.api.citizenos.com:3003/api/internal/users/:userId"
     }
   },
+  "ep_authorship_toggle": {
+    "___version": "0.0.5"
+  },
+  "ep_comments_page": {
+    "___version": "0.1.47",
+    "displayCommentAsIcon": true,
+    "displayCommentsInModal": true,
+    "allowInlineClick": true,
+    "exportHtml": false
+  },
+  "ep_embed_floating_toolbar": {
+    "___version": "0.0.4"
+  },
+  "ep_font_color": {
+    "___version": "0.0.41"
+  },
+  "ep_font_size": {
+    "___version": "0.4.9"
+  },
+  "ep_foot_note": {
+    "___version": "git+https://github.com/citizenos/ep_foot_note#531b650e0c2a097deb4cd1fdcfd43a43283052fd"
+  },
+  "ep_headings2": {
+    "___version": "0.2.12"
+  },
   "ep_image_upload": {
-    "___version": "1.0.7",
+    "___version": "1.0.45",
     "storage": {
       "type": "S3",
       "accessKeyId": "AWS_ACCESS_KEY_ID",
@@ -156,7 +169,55 @@
       "bucket": "costestbucket",
       "baseFolder": "ep"
     },
-    "fileTypes": ["jpeg", "jpg", "bmp", "gif","png"],
+    "fileTypes": [
+      "jpeg",
+      "jpg",
+      "bmp",
+      "gif",
+      "png"
+    ],
     "maxFileSize": 5000000
+  },
+  "ep_custom_inline_toolbar": {
+    "___version": "1.0.0",
+    "position": "bottom"
+  },
+  "ep_inline_voting": {
+    "___version": "0.0.3"
+  },
+  "ep_resize": {
+    "___version": "0.0.11"
+  },
+  "ep_title_limit": {
+    "___version": "git+https://github.com/citizenos/ep_title_limit#e10fcb754880704a5b330c0bf8a74236d30fc2cf",
+    "maxLength": 101
+  },
+  "ep_themes_ext": {
+    "___version": "0.0.6",
+    "default": [
+      "https://dev.citizenos.com:3001/static/styles/etherpad.css"
+    ],
+    "citizenos.com": [
+      "https://dev.citizenos.com:3001/static/styles/etherpad.css"
+    ],
+    "rahvaalgatus.ee": [
+      "https://dev.rahvaalgatus.ee/css/editorless.css"
+    ]
+  },
+  "ep_translations": {
+    "___version": "0.0.6",
+    "type": "git",
+    "path": "git://github.com/citizenos/etherpad_translations.git",
+    "savePath": "/tmp/ep_translations"
+  },
+  "ep_webhooks": {
+    "___version": "1.0.4",
+    "apiKey": "superSecretAPIkeySentInXApiKeyHeader",
+    "caCert": "-----BEGIN CERTIFICATE-----\nMIIDoDCCAogCCQC85R3CVrF5aDANBgkqhkiG9w0BAQsFADCBkTELMAkGA1UEBhMC\nRUUxETAPBgNVBAgMCEhhcmp1bWFhMRAwDgYDVQQHDAdUYWxsaW5uMRIwEAYDVQQK\nDAlDaXRpemVuT1MxCzAJBgNVBAsMAklUMRQwEgYDVQQDDAtkZXYudG9ydS5lZTEm\nMCQGCSqGSIb3DQEJARYXY2l0aXplbm9zLmVzdEBnbWFpbC5jb20wHhcNMTUxMDAx\nMDkyMzE1WhcNNDMwMjE1MDkyMzE1WjCBkTELMAkGA1UEBhMCRUUxETAPBgNVBAgM\nCEhhcmp1bWFhMRAwDgYDVQQHDAdUYWxsaW5uMRIwEAYDVQQKDAlDaXRpemVuT1Mx\nCzAJBgNVBAsMAklUMRQwEgYDVQQDDAtkZXYudG9ydS5lZTEmMCQGCSqGSIb3DQEJ\nARYXY2l0aXplbm9zLmVzdEBnbWFpbC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IB\nDwAwggEKAoIBAQDYt0FCtIgu0NcKQ+6T+tUNtTChg8g/1xgR0KS4B9zqdoxHuE/8\nHvylHff/1ysmFEiaFX6aoo3ww1PSY7tJ38+ozkks8Ga3wWADVuCVWytu1gpznuDO\neLq/TJ7MMKuev1SFumpTjPuN3ppD25yyb30Ajx29e9xXO0oa6s5TFD1nzZiZRyHs\n36BPsD3Dk7P3q6OKuuP/AEJZC8vvAPDJXh1X9o1+vhQ7mOzISE6CoKc1FheOLMAQ\nKqkLlMPDJgSSNzAUhB+BbNanhynkRDfhQnIDUpJjjNx8vzHKLoPtfA+RSYgA6DOD\n8jDgTPaszKNQG2VYauLd4Tg/tQx+GdlbtIhpAgMBAAEwDQYJKoZIhvcNAQELBQAD\nggEBAD2OFnsFll4TqhlWD2zNbVz5nUIqPIQZKi6uSmLLZdsn61dVuIMqfd1awdxL\ntyLu8IxmFqjGJuKwTm1IzDlkjG7JXB9TXGjj994wkBfJeEK01iUrS24GU2kWU0DU\nFe7GHHNi+x0nSEf2tfwQJw+9+WkR5jfq7eyUPKqlm8aETLT0Hk20KF/Tew9q/LAw\n8tQ1BpjmB5uMw7YPhu41Ef/Fcd3myVGBBgVSAjJHgc6Tq29FsOqh7Fi7zFHr/u5k\nP0A4iFQAld2k1Jwq+18/Qq8k8Jnpyh7DhefLNMc0HVg3H+3sCSHSDv0fEAa+7mRm\nR3jc3Y4rDxpM56PM9r3c19aKOYc=\n-----END CERTIFICATE-----",
+    "pads": {
+      "update": [
+        "https://dev.api.citizenos.com:3003/api/internal/notifications/pads/update"
+      ]
+    }
   }
 }
