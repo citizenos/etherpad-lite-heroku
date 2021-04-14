@@ -5,7 +5,7 @@
   "favicon": "favicon.ico",
   "ssl": false,
   "dbType": "postgres",
-  "dbSettings": "postgres://etherpad:etherpad@localhost:5433/etherpad",
+  "dbSettings": "postgres://etherpad:etherpad@localhost:5432/etherpad",
   "defaultPadText": "Topic content here..",
   "requireSession": false,
   "editOnly": true,
@@ -79,33 +79,24 @@
     ]
   },
   "ep_align": {
-    "___version": "git+https://github.com/ilmartyrk/ep_align"
+    "___version": "0.3.15"
   },
   "ep_authorship_toggle": {
-    "___version": "0.0.3"
+    "___version": "0.0.5"
   },
   "ep_embed_floating_toolbar": {
-    "___version": "0.0.3"
+    "___version": "0.0.4"
   },
   "ep_font_color": {
-    "___version": "git+https://github.com/citizenos/ep_font_color"
+    "___version": "0.0.41"
   },
   "ep_font_size": {
-    "___version": "git+https://github.com/citizenos/ep_font_size"
+    "___version": "0.4.9"
   },
   "ep_headings2": {
-    "___version": "git+https://github.com/citizenos/ep_headings2"
+    "___version": "0.2.12"
   },
   "ep_resize": {
     "___version": "0.0.5"
-  },
-  "ep_webhooks": {
-    "___version": "1.0.2",
-    "apiKey": "YOURSECRETKEHERE",
-    "pads": {
-      "update": [
-        "https://citizenos.com/api/internal/notifications/pads/update"
-      ]
-    }
   }
 }
