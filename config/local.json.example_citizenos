@@ -154,7 +154,7 @@
     "___version": "0.4.9"
   },
   "ep_foot_note": {
-    "___version": "git+https://github.com/citizenos/ep_foot_note#531b650e0c2a097deb4cd1fdcfd43a43283052fd"
+    "___version": "0.1.0"
   },
   "ep_headings2": {
     "___version": "0.2.12"
