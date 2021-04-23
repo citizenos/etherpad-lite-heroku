@@ -189,8 +189,8 @@
     "___version": "0.0.11"
   },
   "ep_title_limit": {
-    "___version": "git+https://github.com/citizenos/ep_title_limit#e10fcb754880704a5b330c0bf8a74236d30fc2cf",
-    "maxLength": 101
+    "___version": "1.1.0",
+    "maxLength": 100
   },
   "ep_themes_ext": {
     "___version": "0.0.6",
