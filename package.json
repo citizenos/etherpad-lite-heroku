@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "kexec": "3.0.0",
-    "lodash": "4.17.19",
+    "lodash": "4.17.21",
     "log4js": "4.0.2"
   }
 }
