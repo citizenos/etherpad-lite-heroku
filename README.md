@@ -95,7 +95,7 @@ To run the app:
 * Run & leave running: `./bin/scripts/sync ${ABS_PATH_TO_YOUR_PLUGIN}` (ex: `./bin/scripts/sync.sh /home/m/dev/ep_auth_citizenos`) - this will sync your local plugin checkout to directory Etherpad uses on runtime.
     * **NOTE:** Symlinks cannot be used as plugin fails to resolve dependencies correctly.
 * Run Etherpad `NODE_TLS_REJECT_UNAUTHORIZED=0 ./etherpad-lite/bin/fastRun.sh` - Runs Etherpad without installing dependencies, uses your local plugin code if sync mentioned above is active. 
-    * **NOTE:** You do need to restart EP for changes in plugins server side code.
+    * **NOTE:** You do need to restart EP for changes in plugin code.
     
 #### Upgrading Etherpad
 
