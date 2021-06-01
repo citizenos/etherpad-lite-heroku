@@ -1,6 +1,6 @@
 # 1.0.4
 
-* Modify ep_auth_citizenos sample config  - https://github.com/citizenos/citizenos-fe/issues/676
+* Add ``GET /ep_auth_citizenos/logout` endpoint so that app can destroy EP session on logout` - https://github.com/citizenos/citizenos-fe/issues/676
 
 # 1.0.3
 
