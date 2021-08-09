@@ -11,16 +11,16 @@
     "etherpad-lite/src/node_modules"
   ],
   "engines": {
-    "node": "10.17.0",
-    "npm": "6.4.1"
+    "node": "10.22.1",
+    "npm": "6.14.13"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:citizenos/etherpad-lite-heroku.git"
   },
   "dependencies": {
-    "kexec": "3.0.0",
+    "kexec": "git+https://github.com/StorytellerCZ/node-kexec#c0dd95c13c46084be22a32a6b120e1b84945331e",
     "lodash": "4.17.21",
-    "log4js": "4.0.2"
+    "log4js": "6.3.0"
   }
 }
