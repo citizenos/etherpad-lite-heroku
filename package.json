@@ -19,7 +19,7 @@
     "url": "git@github.com:citizenos/etherpad-lite-heroku.git"
   },
   "dependencies": {
-    "kexec": "git+https://github.com/StorytellerCZ/node-kexec#c0dd95c13c46084be22a32a6b120e1b84945331e",
+    "kexec": "git+https://github.com/jcoreio/kexec#7c47fcec70f9e71f2d8d7c10b2cd0fbfcad2af56",
     "lodash": "4.17.21",
     "log4js": "6.3.0"
   }
