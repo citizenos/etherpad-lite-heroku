@@ -11,9 +11,6 @@ install:
   - "export GIT_HASH=$(git rev-parse --verify --short HEAD)"
   - "npm install ep_test_line_attrib"
 
-before_script:
-  - "tests/frontend/travis/sauce_tunnel.sh"
-
 script:
   - "tests/frontend/travis/runner.sh"
 
@@ -26,11 +23,12 @@ jobs:
   include:
     - name: "Run the Backend tests"
       install:
-        - "cd src && npm install && cd -"
+        - "cd etherpad-lite/src && npm install && cd .."
       script:
         - "tests/frontend/travis/runnerBackend.sh"
     - name: "Test the Frontend"
       install:
+        - "cd etherpad-lite/"
         - "bin/installDeps.sh"
         - "export GIT_HASH=$(git rev-parse --verify --short HEAD)"
         - "npm install ep_test_line_attrib"
@@ -38,8 +36,9 @@ jobs:
         - "tests/frontend/travis/runner.sh"
     - name: "Test the Dockerfile"
       install:
-        - "cd src && npm install && cd -"
+        - "cd etherpad-lite/src && npm install && cd .."
       script:
+        - "cd etherpad-lite/"
         - "docker build -t etherpad:test ."
         - "docker run -d -p 9001:9001 etherpad:test && sleep 3"
         - "cd src && npm run test-container"
