@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var kexec = require('kexec');
+var kexec = require('@jcoreio/kexec');
 var fs = require('fs');
 var path = require('path');
 var _ = require('lodash');
