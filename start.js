@@ -1,18 +1,18 @@
 #!/usr/bin/env node
 
-var kexec = require('@jcoreio/kexec');
-var fs = require('fs');
-var path = require('path');
-var _ = require('lodash');
-var childProcess = require('child_process');
-var log4js = require('log4js');
+const kexec = require('@jcoreio/kexec');
+const fs = require('fs');
+const path = require('path');
+const _ = require('lodash');
+const childProcess = require('child_process');
+const log4js = require('log4js');
 
-var logger = log4js.getLogger('start.js');
+const logger = log4js.getLogger('start.js');
 logger.level = process.env.ETHERPAD_LITE_HEROKU_LOGGER_LEVEL || 'debug';
 
-var settingsLocal = null; // Your local config in '/config/local.json'
-var settingsEnv = null; // Settings defined in environment variable 'ETHERPAD_SETTINGS'
-var settingsDb = null; // DB settings derived from `DATABASE_URL` variable set by Heroku
+let settingsLocal = null; // Your local config in '/config/local.json'
+let settingsEnv = null; // Settings defined in environment variable 'ETHERPAD_SETTINGS'
+let settingsDb = null; // DB settings derived from `DATABASE_URL` variable set by Heroku
 
 logger.info('Checking for config/local.json...');
 try {
@@ -82,7 +82,7 @@ if (typeof settings.dbSettings === 'string') { // TODO: Remove IF this is fixed:
 logger.info('Effective configuration is:\n', JSON.stringify(settings, null, 2));
 
 logger.info('\nWrite the Etherpad API key to the disk from the ENV "ETHERPAD_API_KEY" or local.json "___apiKey"...');
-var etherpadApiKey = process.env.ETHERPAD_API_KEY || settings.___apiKey;
+const etherpadApiKey = process.env.ETHERPAD_API_KEY || settings.___apiKey;
 if (etherpadApiKey) {
     logger.info('ETHERPAD_API_KEY found!');
     fs.writeFileSync('./etherpad-lite/APIKEY.txt', etherpadApiKey);
@@ -92,7 +92,7 @@ if (etherpadApiKey) {
 }
 
 logger.info('\nWrite the Etherpad session key to the disk from the ENV "ETHERPAD_SESSION_KEY" or local.json "___sessionKey"...');
-var etherpadSessionKey = process.env.ETHERPAD_SESSION_KEY || settings.___sessionKey;
+const etherpadSessionKey = process.env.ETHERPAD_SESSION_KEY || settings.___sessionKey;
 if (etherpadSessionKey) {
     logger.info('ETHERPAD_SESSION_KEY found!');
     fs.writeFileSync('./etherpad-lite/SESSIONKEY.txt', etherpadSessionKey);
@@ -102,10 +102,10 @@ if (etherpadSessionKey) {
 }
 
 logger.info('\nFind plugin configuration from effective settings...');
-var pluginInstallCommand = 'npm install --no-save';
+let pluginInstallCommand = 'npm install --no-save';
 Object.keys(settings).forEach(function (key) {
     if (key.match(/ep_/)) {
-        var version = settings[key].___version;
+        const version = settings[key].___version;
         if (version) {
             pluginInstallCommand += ' ' + key + '@' + version;
             delete settings[key].___version; // Remove from effective conf so that Etherpad startup does not show warnings about unknown keys
@@ -119,7 +119,7 @@ logger.info('Installing plugins...', pluginInstallCommand);
 childProcess.execSync(pluginInstallCommand, {stdio: [0, 1, 2]});
 childProcess.execSync('./installPackages.sh', {stdio: [0, 1, 2]});
 
-var pathSettings = path.resolve('./etherpad-lite/settings.json');
+const pathSettings = path.resolve('./etherpad-lite/settings.json');
 logger.info('\nWrite settings.json file which is read by EP to ' + pathSettings);
 try {
     fs.writeFileSync(pathSettings, JSON.stringify(settings, null, 2));
@@ -129,7 +129,10 @@ try {
     process.exit(1);
 }
 logger.info('Configuration done! \n');
-
+logger.info(__dirname+'\n');
+kexec('ls -a');
+kexec('ls -a ./etherpad-lite');
+kexec('ls -a ./etherpad-lite/bin');
 // Run the Etherpad itself. Using kexec so that the current process would get replaced with the new one
 if (process.env.ETHERPAD_ALLOW_ROOT) {
     kexec('./etherpad-lite/bin/run.sh --root');
