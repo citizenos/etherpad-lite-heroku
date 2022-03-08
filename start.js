@@ -130,9 +130,6 @@ try {
 }
 logger.info('Configuration done! \n');
 logger.info(__dirname+'\n');
-kexec('ls -a');
-kexec('ls -a ./etherpad-lite');
-kexec('ls -a ./etherpad-lite/bin');
 // Run the Etherpad itself. Using kexec so that the current process would get replaced with the new one
 if (process.env.ETHERPAD_ALLOW_ROOT) {
     kexec('./etherpad-lite/bin/run.sh --root');
