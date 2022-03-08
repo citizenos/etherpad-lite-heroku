@@ -1,4 +1,4 @@
 [submodule "etherpad-lite"]
 	path = etherpad-lite
-	url = https://github.com/ether/etherpad-lite.git
-	branch = master
+	url = https://github.com/ether/etherpad-lite
+	branch = c85ab49444a50af39e6d571abc1672934d80bd72
