@@ -102,22 +102,24 @@ if (etherpadSessionKey) {
 }
 
 logger.info('\nFind plugin configuration from effective settings...');
-let pluginInstallCommand = 'npm install --no-save';
+childProcess.execSync('cd etherpad-lite', {stdio: [0, 1, 2]});
+
+logger.info('Installing plugins...');
 Object.keys(settings).forEach(function (key) {
     if (key.match(/ep_/)) {
         const version = settings[key].___version;
         if (version) {
-            pluginInstallCommand += ' ' + key + '@' + version;
+            childProcess.execSync('pnpm --filter bin run plugins i '+ key + '@' + version, {stdio: [0, 1, 2]});
+            //pluginInstallCommand += ' ' + key + '@' + version;
             delete settings[key].___version; // Remove from effective conf so that Etherpad startup does not show warnings about unknown keys
         } else {
             logger.error('WARN! Missing version configuration (___version) for plugin "' + key + '". Ignoring!');
         }
     }
 });
-
-logger.info('Installing plugins...', pluginInstallCommand);
-childProcess.execSync(pluginInstallCommand, {stdio: [0, 1, 2]});
-childProcess.execSync('./installPackages.sh', {stdio: [0, 1, 2]});
+childProcess.execSync('cd ..', {stdio: [0, 1, 2]});
+//childProcess.execSync(pluginInstallCommand, {stdio: [0, 1, 2]});
+//childProcess.execSync('./installPackages.sh', {stdio: [0, 1, 2]});
 
 const pathSettings = path.resolve('./etherpad-lite/settings.json');
 logger.info('\nWrite settings.json file which is read by EP to ' + pathSettings);

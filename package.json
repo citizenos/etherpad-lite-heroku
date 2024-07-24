@@ -11,8 +11,8 @@
     "etherpad-lite/src/node_modules"
   ],
   "engines": {
-    "node": "18.18.0",
-    "npm": "10.2.0"
+    "node": "20.15.1",
+    "npm": "10.7.0"
   },
   "repository": {
     "type": "git",
