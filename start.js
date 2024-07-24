@@ -100,7 +100,7 @@ if (etherpadSessionKey) {
 } else {
     logger.info('ETHERPAD_SESSION_KEY NOT found!');
 }
-
+childProcess.execSync('npm i pnpm --global');
 logger.info('\nFind plugin configuration from effective settings...');
 childProcess.execSync('cd etherpad-lite', {stdio: [0, 1, 2]});
 
