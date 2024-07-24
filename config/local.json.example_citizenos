@@ -14,7 +14,8 @@
   "defaultPadText": "Topic content here..",
   "requireSession": false,
   "editOnly": true,
-  "sessionNoPassword": false,
+  "authenticationMethod": "apikey",
+  "sessionNoPassword": true,
   "minify": false,
   "maxAge": 21600,
   "abiword": null,
@@ -23,6 +24,7 @@
   "trustProxy": true,
   "disableIPlogging": false,
   "socketTransportProtocols": [
+    "websocket",
     "xhr-polling",
     "jsonp-polling",
     "htmlfile"
@@ -114,10 +116,10 @@
     ]
   },
   "ep_align": {
-    "___version": "0.3.15"
+    "___version": "0.3.96"
   },
   "ep_auth_citizenos": {
-    "___version": "1.0.5",
+    "___version": "1.0.12",
     "jwt": {
       "publicKey": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4x3Ld7aV+QefkrdISdws\nNFP2nxIpY/vVffttUxrBmQ8FKZTP72uRfJ4p7TafP2AY69UKS9uKemKQs/E9U4yy\nYgKPTD1m3fzs6THh0fwP8Et6qinQI5HP+OcuRDm95q3GoLk4gcF4EKcAFZA2JrFC\nSWWhiJ7qCb++fM3bFcy1i10VoLUaLNJxhkwxOrk15QPgR8uFvLqDIzvJn3GuKpkk\nunvU8VZ2vucCVUH91JPY23iNukGuUE/e+b8H9oyi/vomRpU3zNIKCrk/fynyPAhM\npQWaOT4cNibHOS+KNqJpCKKi3xvfxb+fZvX9sVKLzbibCj2vSL8wjUyayw0zOfnY\n1QIDAQAB\n-----END PUBLIC KEY-----\n",
       "algorithms": [
@@ -143,7 +145,7 @@
     }
   },
   "ep_authorship_toggle": {
-    "___version": "0.0.5"
+    "___version": "0.0.9"
   },
   "ep_comments_page": {
     "___version": "0.1.47",
@@ -153,22 +155,22 @@
     "exportHtml": false
   },
   "ep_embed_floating_toolbar": {
-    "___version": "0.0.4"
+    "___version": "0.0.8"
   },
   "ep_font_color": {
-    "___version": "0.0.41"
+    "___version": "0.0.87"
   },
   "ep_font_size": {
-    "___version": "0.4.9"
+    "___version": "0.4.61"
   },
   "ep_foot_note": {
-    "___version": "0.1.0"
+    "___version": "0.1.7"
   },
   "ep_headings2": {
-    "___version": "0.2.12"
+    "___version": "0.2.64"
   },
   "ep_image_upload": {
-    "___version": "1.0.45",
+    "___version": "1.0.105",
     "storage": {
       "type": "S3",
       "accessKeyId": "AWS_ACCESS_KEY_ID",
@@ -191,17 +193,13 @@
     "position": "bottom"
   },
   "ep_inline_voting": {
-    "___version": "0.0.3"
+    "___version": "0.0.16"
   },
   "ep_resize": {
-    "___version": "0.0.11"
-  },
-  "ep_title_limit": {
-    "___version": "1.1.0",
-    "maxLength": 100
+    "___version": "0.0.18"
   },
   "ep_themes_ext": {
-    "___version": "0.0.6",
+    "___version": "0.0.10",
     "default": [
       "https://dev.citizenos.com:3001/static/styles/etherpad.css"
     ],
@@ -213,13 +211,13 @@
     ]
   },
   "ep_translations": {
-    "___version": "0.0.6",
+    "___version": "0.0.17",
     "type": "git",
-    "path": "git://github.com/citizenos/etherpad_translations.git",
+    "path": "git@github.com:citizenos/etherpad_translations.git",
     "savePath": "/tmp/ep_translations"
   },
   "ep_webhooks": {
-    "___version": "1.0.4",
+    "___version": "1.0.14",
     "apiKey": "superSecretAPIkeySentInXApiKeyHeader",
     "caCert": "-----BEGIN CERTIFICATE-----\nMIIDoDCCAogCCQC85R3CVrF5aDANBgkqhkiG9w0BAQsFADCBkTELMAkGA1UEBhMC\nRUUxETAPBgNVBAgMCEhhcmp1bWFhMRAwDgYDVQQHDAdUYWxsaW5uMRIwEAYDVQQK\nDAlDaXRpemVuT1MxCzAJBgNVBAsMAklUMRQwEgYDVQQDDAtkZXYudG9ydS5lZTEm\nMCQGCSqGSIb3DQEJARYXY2l0aXplbm9zLmVzdEBnbWFpbC5jb20wHhcNMTUxMDAx\nMDkyMzE1WhcNNDMwMjE1MDkyMzE1WjCBkTELMAkGA1UEBhMCRUUxETAPBgNVBAgM\nCEhhcmp1bWFhMRAwDgYDVQQHDAdUYWxsaW5uMRIwEAYDVQQKDAlDaXRpemVuT1Mx\nCzAJBgNVBAsMAklUMRQwEgYDVQQDDAtkZXYudG9ydS5lZTEmMCQGCSqGSIb3DQEJ\nARYXY2l0aXplbm9zLmVzdEBnbWFpbC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IB\nDwAwggEKAoIBAQDYt0FCtIgu0NcKQ+6T+tUNtTChg8g/1xgR0KS4B9zqdoxHuE/8\nHvylHff/1ysmFEiaFX6aoo3ww1PSY7tJ38+ozkks8Ga3wWADVuCVWytu1gpznuDO\neLq/TJ7MMKuev1SFumpTjPuN3ppD25yyb30Ajx29e9xXO0oa6s5TFD1nzZiZRyHs\n36BPsD3Dk7P3q6OKuuP/AEJZC8vvAPDJXh1X9o1+vhQ7mOzISE6CoKc1FheOLMAQ\nKqkLlMPDJgSSNzAUhB+BbNanhynkRDfhQnIDUpJjjNx8vzHKLoPtfA+RSYgA6DOD\n8jDgTPaszKNQG2VYauLd4Tg/tQx+GdlbtIhpAgMBAAEwDQYJKoZIhvcNAQELBQAD\nggEBAD2OFnsFll4TqhlWD2zNbVz5nUIqPIQZKi6uSmLLZdsn61dVuIMqfd1awdxL\ntyLu8IxmFqjGJuKwTm1IzDlkjG7JXB9TXGjj994wkBfJeEK01iUrS24GU2kWU0DU\nFe7GHHNi+x0nSEf2tfwQJw+9+WkR5jfq7eyUPKqlm8aETLT0Hk20KF/Tew9q/LAw\n8tQ1BpjmB5uMw7YPhu41Ef/Fcd3myVGBBgVSAjJHgc6Tq29FsOqh7Fi7zFHr/u5k\nP0A4iFQAld2k1Jwq+18/Qq8k8Jnpyh7DhefLNMc0HVg3H+3sCSHSDv0fEAa+7mRm\nR3jc3Y4rDxpM56PM9r3c19aKOYc=\n-----END CERTIFICATE-----",
     "pads": {
