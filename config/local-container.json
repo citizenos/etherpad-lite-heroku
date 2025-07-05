@@ -1,0 +1,186 @@
+{
+  "title": "Etherpad-Lite / CitizenOS",
+  "favicon": "favicon.ico",
+  "ip": "0.0.0.0",
+  "port": 9001,
+  "defaultPadText": "Topic content here..",
+  "requireSession": false,
+  "editOnly": true,
+  "authenticationMethod": "apikey",
+  "skinName": "colibris",
+  "minify": false,
+  "maxAge": 21600,
+  "abiword": null,
+  "requireAuthentication": true,
+  "requireAuthorization": true,
+  "trustProxy": true,
+  "disableIPlogging": false,
+  "socketTransportProtocols": [
+    "websocket",
+    "xhr-polling",
+    "jsonp-polling",
+    "htmlfile"
+  ],
+  "loglevel": "INFO",
+  "logconfig": {
+    "appenders": [
+      {
+        "type": "console"
+      }
+    ]
+  },
+  "padOptions": {
+    "noColors": true,
+    "showControls": true,
+    "showChat": false,
+    "showLineNumbers": false,
+    "useMonospaceFont": false,
+    "userName": false,
+    "userColor": false,
+    "rtl": false,
+    "alwaysShowChat": false,
+    "chatAndUsers": false,
+    "lang": "en-gb"
+  },
+  "skinVariants": "full-width-editor",
+  "toolbar": {
+    "left": [
+      [
+        "bold",
+        "italic",
+        "underline",
+        "strikethrough"
+      ],
+      [
+        "orderedlist",
+        "unorderedlist",
+        "indent",
+        "outdent"
+      ],
+      [
+        "alignLeft",
+        "alignCenter",
+        "alignRight"
+      ],
+      [
+        "undo",
+        "redo"
+      ],
+      [
+        "fontColor",
+        "addFootNote"
+      ]
+    ],
+    "right": [
+      [
+        "timeslider"
+      ]
+    ],
+    "timeslider": [
+      [
+        "timeslider_returnToPad"
+      ]
+    ],
+    "custom_inline": [
+      [
+        {
+          "createVote": {
+            "buttonType": "link",
+            "title": "Create new mini-vote",
+            "localizationId": "ep_inline_voting.title_create_voting"
+          }
+        }
+      ]
+    ]
+  },
+  "ep_align": {
+    "___version": "0.3.96"
+  },
+  "ep_authorship_toggle": {
+    "___version": "0.0.9"
+  },
+  "ep_auth_citizenos": {
+    "___version": "1.0.15",
+    "jwt": {
+      "publicKey": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4x3Ld7aV+QefkrdISdws\nNFP2nxIpY/vVffttUxrBmQ8FKZTP72uRfJ4p7TafP2AY69UKS9uKemKQs/E9U4yy\nYgKPTD1m3fzs6THh0fwP8Et6qinQI5HP+OcuRDm95q3GoLk4gcF4EKcAFZA2JrFC\nSWWhiJ7qCb++fM3bFcy1i10VoLUaLNJxhkwxOrk15QPgR8uFvLqDIzvJn3GuKpkk\nunvU8VZ2vucCVUH91JPY23iNukGuUE/e+b8H9oyi/vomRpU3zNIKCrk/fynyPAhM\npQWaOT4cNibHOS+KNqJpCKKi3xvfxb+fZvX9sVKLzbibCj2vSL8wjUyayw0zOfnY\n1QIDAQAB\n-----END PUBLIC KEY-----",
+      "algorithms": [
+        "RS256"
+      ]
+    },
+    "api": {
+      "cors": {
+        "origin": [
+          "\\.citizenos\\.com(:[0-9]{2,4})?$",
+          "citizenos\\.com(:[0-9]{2,4})?$"
+        ],
+        "allowedHeaders": [
+          "User-Agent",
+          "Accept-Language",
+          "Connection",
+          "Cookie",
+          "Accept-Encoding",
+          "Host",
+          "Origin",
+          "Content-Type",
+          "Content-Length",
+          "Accept",
+          "Referer"
+        ],
+        "credentials": true
+      }
+    },
+    "authorization": {
+      "url": "https://dev.api.citizenos.com:3003/api/internal/topics/:topicId/permissions",
+      "apiKey": "superSecretAPIkeySentInXApiKeyHeader",
+      "cacheMaxAge": 60000
+    },
+    "authorSync": {
+      "url": "https://dev.api.citizenos.com:3003/api/internal/users/:userId"
+    }
+  },
+  "ep_embed_floating_toolbar": {
+    "___version": "0.0.8"
+  },
+  "ep_add_hyperlink": {
+    "___version": "0.0.2"
+  },
+  "ep_font_color": {
+    "___version": "0.0.87"
+  },
+  "ep_font_size": {
+    "___version": "0.4.61"
+  },
+  "ep_foot_note": {
+    "___version": "0.1.7"
+  },
+  "ep_headings2": {
+    "___version": "0.2.64"
+  },
+  "ep_resize": {
+    "___version": "0.0.18"
+  },
+  "ep_themes_ext": {
+    "___version": "0.0.10",
+    "default": [
+      "https://dev.app.citizenos.com:3003/etherpad.css"
+    ],
+    "citizenos.com": [
+      "https://dev.app.citizenos.com:3003/etherpad.css"
+    ]
+  },
+  "ep_translations": {
+    "___version": "0.0.17",
+    "type": "git",
+    "path": "git@github.com:citizenos/etherpad_translations.git",
+    "savePath": "/tmp/ep_translations"
+  },
+  "ep_webhooks": {
+    "___version": "1.0.17",
+    "apiKey": "superSecretAPIkeySentInXApiKeyHeader",
+    "pads": {
+      "update": [
+        "https://dev.api.citizenos.com:3003/api/internal/notifications/pads/update"
+      ]
+    }
+  }
+}

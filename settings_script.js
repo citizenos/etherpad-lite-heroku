@@ -131,43 +131,4 @@ try {
 }
 logger.info('Configuration done! \n');
 logger.info(__dirname+'\n');
-// Run the Etherpad itself. Using kexec so that the current process would get replaced with the new one
-
-let child;
-if (process.env.ETHERPAD_ALLOW_ROOT) {
-    childProcess.exec('./etherpad-lite/bin/run.sh --root');
-    childProcess.exec('kill node');
-    child = childProcess.exec('node --optimize_for_size --max_old_space_size=460 --gc_interval=100 ./etherpad-lite/node_modules/ep_etherpad-lite/node/server.js ');
-    // use event hooks to provide a callback to execute when data are available:
-    child.stdout.on('data', function(data) {
-        console.log(data.toString());
-    });
-
-} else {
-    let child1 = childProcess.exec('./etherpad-lite/bin/run.sh');
-    child1.stdout.on('data', (data) => {
-        console.log(data.toString());
-    })
-}
-
-
-/*
-
-function startChild(){
-
-  child = spawn(process.execPath,  ["./etherpad-lite/bin/run.sh", argv], {
-    cwd: process.cwd(),
-    env: process.env,
-    detached: false
-  });
-  child.on('error', function(e){console.log(e)});
-  child.stdout.pipe(process.stdout);
-  console.log("STARTED with PID:", child.pid);
-}
-
-
-process.on('SIGQUIT', function() {
-  child.kill();
-  startChild();
-});
-startChild();*/
+console.log('SETTINGS LOADED')

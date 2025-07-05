@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  etherpad:
+    image: ilmartyrk/citizenos:etherpad-latest
+    container_name: etherpad
+    ports:
+      - "9001:9001"
+    environment:
+      # Core Etherpad settings
+      - ETHERPAD_TITLE=My Custom Etherpad
+      - ETHERPAD_PORT=9001
+      - ETHERPAD_LOG_LEVEL=INFO
+      - ETHERPAD_DEFAULT_PAD_TEXT=Welcome to our collaborative editor!
+      - ETHERPAD_REQUIRE_SESSION=false
+      - ETHERPAD_EDIT_ONLY=true
+      - ETHERPAD_AUTHENTICATION_METHOD=apikey
+      - ETHERPAD_SKIN_NAME=colibris
+      - ETHERPAD_MINIFY=false
+      - ETHERPAD_MAX_AGE=21600
+      - ETHERPAD_REQUIRE_AUTHENTICATION=false  # Set to true for production
+      - ETHERPAD_REQUIRE_AUTHORIZATION=false   # Set to true for production
+      - ETHERPAD_TRUST_PROXY=true
+      - ETHERPAD_DISABLE_IP_LOGGING=false
+      - ETHERPAD_SKIN_VARIANTS=full-width-editor
+
+      # Plugin versions (optional - will use defaults if not set)
+      - EP_ALIGN_VERSION=0.3.96
+      - EP_AUTHORSHIP_TOGGLE_VERSION=0.0.9
+      - EP_AUTH_CITIZENOS_VERSION=1.0.15
+      - EP_EMBED_FLOATING_TOOLBAR_VERSION=0.0.8
+      - EP_ADD_HYPERLINK_VERSION=0.0.2
+      - EP_FONT_COLOR_VERSION=0.0.87
+      - EP_FONT_SIZE_VERSION=0.4.61
+      - EP_FOOT_NOTE_VERSION=0.1.7
+      - EP_HEADINGS2_VERSION=0.2.64
+      - EP_RESIZE_VERSION=0.0.18
+      - EP_THEMES_EXT_VERSION=0.0.10
+      - EP_TRANSLATIONS_VERSION=0.0.17
+      - EP_WEBHOOKS_VERSION=1.0.17
+
+      # CitizenOS Auth Plugin Settings (optional)
+      - EP_AUTH_CITIZENOS_JWT_PUBLIC_KEY=-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4x3Ld7aV+QefkrdISdws\nNFP2nxIpY/vVffttUxrBmQ8FKZTP72uRfJ4p7TafP2AY69UKS9uKemKQs/E9U4yy\nYgKPTD1m3fzs6THh0fwP8Et6qinQI5HP+OcuRDm95q3GoLk4gcF4EKcAFZA2JrFC\nSWWhiJ7qCb++fM3bFcy1i10VoLUaLNJxhkwxOrk15QPgR8uFvLqDIzvJn3GuKpkk\nunvU8VZ2vucCVUH91JPY23iNukGuUE/e+b8H9oyi/vomRpU3zNIKCrk/fynyPAhM\npQWaOT4cNibHOS+KNqJpCKKi3xvfxb+fZvX9sVKLzbibCj2vSL8wjUyayw0zOfnY\n1QIDAQAB\n-----END PUBLIC KEY-----
+      - EP_AUTH_CITIZENOS_CORS_ORIGIN=citizenos.com
+      - EP_AUTH_CITIZENOS_AUTH_URL=https://dev.api.citizenos.com:3003/api/internal/topics/:topicId/permissions
+      - EP_AUTH_CITIZENOS_API_KEY=superSecretAPIkeySentInXApiKeyHeader
+      - EP_AUTH_CITIZENOS_CACHE_MAX_AGE=60000
+      - EP_AUTH_CITIZENOS_SYNC_URL=https://dev.api.citizenos.com:3003/api/internal/users/:userId
+    restart: unless-stopped
+    volumes:
+      - etherpad_data:/opt/etherpad-lite/var
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  etherpad_data:
+    driver: local

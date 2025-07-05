@@ -1,0 +1,33 @@
+# Use the official Etherpad image as base
+FROM etherpad/etherpad:latest
+
+# Copy our settings generation script
+COPY ./config/generate-settings.cjs /opt/etherpad-lite/generate-settings.cjs
+
+# Install our specific plugins
+RUN pnpm run plugins i \
+    ep_align \
+    ep_authorship_toggle \
+    ep_auth_citizenos \
+    ep_embed_floating_toolbar \
+    ep_add_hyperlink \
+    ep_font_color \
+    ep_font_size \
+    ep_foot_note \
+    ep_headings2 \
+    ep_resize \
+    ep_themes_ext \
+    ep_translations \
+    ep_webhooks
+
+# Create an entrypoint script that generates settings and starts Etherpad
+RUN echo '#!/bin/bash' > /opt/etherpad-lite/entrypoint.sh && \
+    echo 'node /opt/etherpad-lite/generate-settings.cjs' >> /opt/etherpad-lite/entrypoint.sh && \
+    echo '/opt/etherpad-lite/bin/run.sh' >> /opt/etherpad-lite/entrypoint.sh && \
+    chmod +x /opt/etherpad-lite/entrypoint.sh
+
+# Expose port
+EXPOSE 9001
+
+# Start Etherpad with settings generation
+CMD ["/opt/etherpad-lite/entrypoint.sh"]
