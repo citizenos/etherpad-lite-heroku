@@ -1,1 +1,1 @@
-web: ./start.js
+web: node start.cjs
