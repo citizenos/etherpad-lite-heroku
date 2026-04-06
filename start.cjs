@@ -130,7 +130,7 @@ Object.keys(settings).forEach(function (key) {
     if (key.match(/ep_/)) {
         const version = settings[key].___version;
         if (version) {
-            childProcess.execSync('pnpm --filter bin run plugins i '+ key + '@' + version, {stdio: [0, 1, 2]});
+            childProcess.execSync('pnpm --filter bin run plugins i '+ key + '@' + version + ' --confirm-modules-purge=false', {stdio: [0, 1, 2]});
             //pluginInstallCommand += ' ' + key + '@' + version;
             delete settings[key].___version; // Remove from effective conf so that Etherpad startup does not show warnings about unknown keys
         } else {
