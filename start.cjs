@@ -129,8 +129,12 @@ Object.keys(settings).forEach(function (key) {
     if (key.match(/ep_/)) {
         const version = settings[key].___version;
         if (version) {
-            childProcess.execSync('pnpm --filter bin run plugins i '+ key + '@' + version + ' --confirm-modules-purge=false', {cwd: 'etherpad-lite', stdio: [0, 1, 2]});
-            //pluginInstallCommand += ' ' + key + '@' + version;
+            try {
+                logger.info('Installing plugin: ' + key + '@' + version);
+                childProcess.execSync('pnpm run plugins i '+ key + '@' + version + ' --confirm-modules-purge=false', {cwd: 'etherpad-lite/bin', stdio: 'inherit'});
+            } catch (pluginErr) {
+                logger.error('FAILED to install plugin: ' + key + '. Error: ' + pluginErr.message);
+            }
             delete settings[key].___version; // Remove from effective conf so that Etherpad startup does not show warnings about unknown keys
         } else {
             logger.error('WARN! Missing version configuration (___version) for plugin "' + key + '". Ignoring!');
@@ -151,43 +155,29 @@ try {
 }
 logger.info('Configuration done! \n');
 logger.info(__dirname+'\n');
-// Run the Etherpad itself. Using kexec so that the current process would get replaced with the new one
+// Run the Etherpad itself.
+let serverCommand = './etherpad-lite/bin/run.sh';
+let args = [];
 
-let child;
 if (process.env.ETHERPAD_ALLOW_ROOT) {
-    childProcess.exec('./etherpad-lite/bin/run.sh --root');
-    childProcess.exec('kill node');
-    child = childProcess.exec('node --optimize_for_size --max_old_space_size=460 --gc_interval=100 ./etherpad-lite/node_modules/ep_etherpad-lite/node/server.js ');
-    // use event hooks to provide a callback to execute when data are available:
-    child.stdout.on('data', function(data) {
-        console.log(data.toString());
-    });
-
-} else {
-    let child1 = childProcess.exec('./etherpad-lite/bin/run.sh');
-    child1.stdout.on('data', (data) => {
-        console.log(data.toString());
-    })
+    args.push('--root');
 }
 
+logger.info('Starting Etherpad server with command: ' + serverCommand + ' ' + args.join(' '));
 
-/*
+const serverProcess = childProcess.spawn(serverCommand, args, { stdio: 'inherit' });
 
-function startChild(){
-
-  child = spawn(process.execPath,  ["./etherpad-lite/bin/run.sh", argv], {
-    cwd: process.cwd(),
-    env: process.env,
-    detached: false
-  });
-  child.on('error', function(e){console.log(e)});
-  child.stdout.pipe(process.stdout);
-  console.log("STARTED with PID:", child.pid);
-}
-
-
-process.on('SIGQUIT', function() {
-  child.kill();
-  startChild();
+serverProcess.on('close', (code) => {
+  logger.info(`Etherpad process exited with code ${code}`);
+  process.exit(code);
 });
-startChild();*/
+
+process.on('SIGTERM', () => {
+    logger.info('SIGTERM received, killing child process...');
+    serverProcess.kill('SIGTERM');
+});
+
+process.on('SIGINT', () => {
+    logger.info('SIGINT received, killing child process...');
+    serverProcess.kill('SIGINT');
+});
