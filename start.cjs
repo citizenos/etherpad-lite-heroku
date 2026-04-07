@@ -169,12 +169,17 @@ const {persistInstalledPlugins} = require('./etherpad-lite/bin/commonPlugins');
         await checkForMigration();
     }
     ${pluginsToInstall.map(p => `
-    console.log('Installing ${p.name}...');
-    await linkInstaller.${p.method}(${p.arg});`).join('\n')}
+    try {
+      console.log('Installing ${p.name}...');
+      await linkInstaller.${p.method}(${p.arg});
+    } catch (err) {
+      console.error('FAILED to install ${p.name}: ' + err.message);
+    }
+    `).join('\n')}
     await persistInstalledPlugins();
     process.exit(0);
   } catch (err) {
-    console.error(err);
+    console.error('Fatal error during plugin installation: ' + err.message);
     process.exit(1);
   }
 })();
