@@ -37,7 +37,8 @@
   },
   "dependencies": {
     "ep_etherpad-lite": "workspace:./etherpad-lite/src",
-    "log4js": "^6.9.1"
+    "log4js": "^6.9.1",
+    "tsx": "^4.19.3"
   },
   "devDependencies": {
     "admin": "workspace:./admin",
