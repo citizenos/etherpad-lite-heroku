@@ -28,7 +28,7 @@ COPY etherpad-lite/ ./etherpad-lite/
 RUN pnpm install
 
 # Build Etherpad UI
-RUN cd etherpad-lite/src && pnpm run build:ui
+RUN pnpm run build:ui
 
 # Etherpad usually runs on 9001, but Heroku sets $PORT
 EXPOSE 9001
