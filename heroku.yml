@@ -1,3 +1,4 @@
+# Heroku configuration for Docker-based deployment
 build:
   docker:
     web: Dockerfile
