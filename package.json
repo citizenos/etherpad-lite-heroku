@@ -32,7 +32,8 @@
     "list-plugins": "pnpm --filter bin run list-plugins",
     "build:etherpad": "pnpm --filter admin run build-copy && pnpm --filter ui run build-copy",
     "build:ui": "pnpm --filter ui run build-copy && pnpm --filter admin run build-copy",
-    "makeDocs": "pnpm --filter bin run makeDocs"
+    "makeDocs": "pnpm --filter bin run makeDocs",
+    "start": "node start.cjs"
   },
   "dependencies": {
     "ep_etherpad-lite": "workspace:./etherpad-lite/src",
