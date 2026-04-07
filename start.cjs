@@ -128,7 +128,8 @@ if (etherpadSessionKey) {
 
 logger.info('\nFind plugin configuration from effective settings...');
 
-logger.info('Installing plugins...');
+logger.info('Analyzing plugins to install...');
+const pluginsToInstall = [];
 
 Object.keys(settings).forEach(function (key) {
     if (key.match(/ep_/)) {
@@ -137,48 +138,16 @@ Object.keys(settings).forEach(function (key) {
         const type = pluginConfig.type;
         const gitPath = pluginConfig.path;
 
-        let installMethod = null;
-        let installArg = null;
-
         if (type === 'git' && gitPath) {
             let githubRepo = gitPath;
             if (githubRepo.includes('github.com')) {
                 githubRepo = githubRepo.replace('git@github.com:', '').replace('https://github.com/', '').replace('.git', '');
             }
-            installMethod = 'installFromGitHub';
-            installArg = `'${githubRepo}'`;
-            logger.info('Installing plugin from git/github: ' + key + ' (' + githubRepo + ')');
+            pluginsToInstall.push({ method: 'installFromGitHub', arg: `'${githubRepo}'`, name: key });
+            logger.info('Queued plugin from git/github: ' + key + ' (' + githubRepo + ')');
         } else if (version) {
-            installMethod = 'installPlugin';
-            installArg = `'${key}', '${version}'`;
-            logger.info('Installing plugin: ' + key + '@' + version);
-        }
-
-        if (installMethod) {
-            try {
-                const bridgeScript = `
-import {linkInstaller, checkForMigration} from 'ep_etherpad-lite/static/js/pluginfw/installer';
-import {persistInstalledPlugins} from './bin/commonPlugins';
-await (async () => {
-  try {
-    await checkForMigration();
-    await linkInstaller.${installMethod}(${installArg});
-    await persistInstalledPlugins();
-    process.exit(0);
-  } catch (err) {
-    console.error(err);
-    process.exit(1);
-  }
-})();
-`;
-                const bridgePath = path.resolve('./etherpad-lite/bridge_install.ts');
-                fs.writeFileSync(bridgePath, bridgeScript);
-                childProcess.execSync('node --import tsx bridge_install.ts', {cwd: 'etherpad-lite', stdio: 'inherit'});
-            } catch (pluginErr) {
-                logger.error('FAILED to install plugin: ' + key + '. Error: ' + pluginErr.message);
-            }
-        } else {
-            logger.warn('Missing version or git configuration for plugin "' + key + '". Ignoring!');
+            pluginsToInstall.push({ method: 'installPlugin', arg: `'${key}', '${version}'`, name: key });
+            logger.info('Queued plugin: ' + key + '@' + version);
         }
 
         // Remove metadata keys so that Etherpad startup does not show warnings about unknown keys
@@ -188,6 +157,34 @@ await (async () => {
         delete pluginConfig.savePath;
     }
 });
+
+if (pluginsToInstall.length > 0) {
+    try {
+        const bridgeScript = `
+import {linkInstaller, checkForMigration} from 'ep_etherpad-lite/static/js/pluginfw/installer';
+import {persistInstalledPlugins} from './bin/commonPlugins';
+await (async () => {
+  try {
+    await checkForMigration();
+    ${pluginsToInstall.map(p => `
+    console.log('Installing ${p.name}...');
+    await linkInstaller.${p.method}(${p.arg});`).join('\n')}
+    await persistInstalledPlugins();
+    process.exit(0);
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+})();
+`;
+        const bridgePath = path.resolve('./etherpad-lite/bridge_install.ts');
+        fs.writeFileSync(bridgePath, bridgeScript);
+        logger.info('Executing batched plugin installation...');
+        childProcess.execSync('node --import tsx bridge_install.ts', {cwd: 'etherpad-lite', stdio: 'inherit', env: { ...process.env, NODE_OPTIONS: '--max-old-space-size=400' }});
+    } catch (pluginErr) {
+        logger.error('FAILED to install one or more plugins. Error: ' + pluginErr.message);
+    }
+}
 //childProcess.execSync(pluginInstallCommand, {stdio: [0, 1, 2]});
 //childProcess.execSync('./installPackages.sh', {stdio: [0, 1, 2]});
 

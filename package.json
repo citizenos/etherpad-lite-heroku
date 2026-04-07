@@ -35,7 +35,7 @@
     "makeDocs": "pnpm --filter bin run makeDocs"
   },
   "dependencies": {
-    "ep_etherpad-lite": "workspace:./src",
+    "ep_etherpad-lite": "workspace:./etherpad-lite/src",
     "log4js": "^6.9.1"
   },
   "devDependencies": {

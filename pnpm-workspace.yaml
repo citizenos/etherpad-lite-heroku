@@ -1,9 +1,9 @@
 packages:
-  - src
-  - admin
-  - bin
-  - doc
-  - ui
+  - etherpad-lite/src
+  - etherpad-lite/admin
+  - etherpad-lite/bin
+  - etherpad-lite/doc
+  - etherpad-lite/ui
 onlyBuiltDependencies:
   - '@scarf/scarf'
   - '@swc/core'
