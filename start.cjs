@@ -180,7 +180,7 @@ await (async () => {
         const bridgePath = path.resolve('./etherpad-lite/bridge_install.ts');
         fs.writeFileSync(bridgePath, bridgeScript);
         logger.info('Executing batched plugin installation...');
-        childProcess.execSync('node --import tsx bridge_install.ts', {cwd: 'etherpad-lite', stdio: 'inherit', env: { ...process.env, NODE_OPTIONS: '--max-old-space-size=400' }});
+        childProcess.execSync('npx tsx bridge_install.ts', {cwd: 'etherpad-lite', stdio: 'inherit', env: { ...process.env, NODE_OPTIONS: '--max-old-space-size=400' }});
     } catch (pluginErr) {
         logger.error('FAILED to install one or more plugins. Error: ' + pluginErr.message);
     }
