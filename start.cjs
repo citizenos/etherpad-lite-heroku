@@ -162,7 +162,7 @@ if (pluginsToInstall.length > 0) {
     try {
         const bridgeScript = `
 import {linkInstaller, checkForMigration} from 'ep_etherpad-lite/static/js/pluginfw/installer';
-import {persistInstalledPlugins} from './bin/commonPlugins';
+import {persistInstalledPlugins} from './etherpad-lite/bin/commonPlugins';
 await (async () => {
   try {
     await checkForMigration();
@@ -177,10 +177,10 @@ await (async () => {
   }
 })();
 `;
-        const bridgePath = path.resolve('./etherpad-lite/bridge_install.ts');
+        const bridgePath = path.resolve('./bridge_install.ts');
         fs.writeFileSync(bridgePath, bridgeScript);
         logger.info('Executing batched plugin installation...');
-        childProcess.execSync('pnpm tsx etherpad-lite/bridge_install.ts', {cwd: '.', stdio: 'inherit', env: { ...process.env, NODE_OPTIONS: '--max-old-space-size=400' }});
+        childProcess.execSync('pnpm tsx bridge_install.ts', {cwd: '.', stdio: 'inherit', env: { ...process.env, NODE_OPTIONS: '--max-old-space-size=400' }});
     } catch (pluginErr) {
         logger.error('FAILED to install one or more plugins. Error: ' + pluginErr.message);
     }
