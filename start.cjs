@@ -159,7 +159,7 @@ Object.keys(settings).forEach(function (key) {
                 const bridgeScript = `
 import {linkInstaller, checkForMigration} from 'ep_etherpad-lite/static/js/pluginfw/installer';
 import {persistInstalledPlugins} from './bin/commonPlugins';
-(async () => {
+await (async () => {
   try {
     await checkForMigration();
     await linkInstaller.${installMethod}(${installArg});
