@@ -131,18 +131,38 @@ logger.info('\nFind plugin configuration from effective settings...');
 logger.info('Installing plugins...');
 Object.keys(settings).forEach(function (key) {
     if (key.match(/ep_/)) {
-        const version = settings[key].___version;
-        if (version) {
+        const pluginConfig = settings[key];
+        const version = pluginConfig.___version;
+        const type = pluginConfig.type;
+        const gitPath = pluginConfig.path;
+
+        if (type === 'git' && gitPath) {
+            try {
+                let githubRepo = gitPath;
+                if (githubRepo.includes('github.com')) {
+                    githubRepo = githubRepo.replace('git@github.com:', '').replace('https://github.com/', '').replace('.git', '');
+                }
+                logger.info('Installing plugin from git/github: ' + key + ' (' + githubRepo + ')');
+                childProcess.execSync('pnpm run plugins i --github ' + githubRepo, {cwd: 'etherpad-lite/bin', stdio: 'inherit'});
+            } catch (pluginErr) {
+                logger.error('FAILED to install plugin from git: ' + key + '. Error: ' + pluginErr.message);
+            }
+        } else if (version) {
             try {
                 logger.info('Installing plugin: ' + key + '@' + version);
                 childProcess.execSync('pnpm run plugins i '+ key + '@' + version + ' --confirm-modules-purge=false', {cwd: 'etherpad-lite/bin', stdio: 'inherit'});
             } catch (pluginErr) {
                 logger.error('FAILED to install plugin: ' + key + '. Error: ' + pluginErr.message);
             }
-            delete settings[key].___version; // Remove from effective conf so that Etherpad startup does not show warnings about unknown keys
         } else {
-            logger.error('WARN! Missing version configuration (___version) for plugin "' + key + '". Ignoring!');
+            logger.warn('Missing version or git configuration for plugin "' + key + '". Ignoring!');
         }
+
+        // Remove metadata keys so that Etherpad startup does not show warnings about unknown keys
+        delete pluginConfig.___version;
+        delete pluginConfig.type;
+        delete pluginConfig.path;
+        delete pluginConfig.savePath;
     }
 });
 //childProcess.execSync(pluginInstallCommand, {stdio: [0, 1, 2]});
