@@ -130,20 +130,6 @@ logger.info('\nFind plugin configuration from effective settings...');
 
 logger.info('Installing plugins...');
 
-// Runtime patch for plugins.ts to ensure it waits for async tasks to complete
-// This is necessary because we cannot easily modify the etherpad-lite submodule upstream
-try {
-    const pluginsTsPath = path.resolve('./etherpad-lite/bin/plugins.ts');
-    let pluginsTs = fs.readFileSync(pluginsTsPath, 'utf8');
-    if (!pluginsTs.includes('await (async () => {')) {
-        logger.info('Patching etherpad-lite/bin/plugins.ts for async support...');
-        pluginsTs = pluginsTs.replace(/(\(async \(\) => \{[\s\S]*?\}\)\(\);)/g, 'await $1');
-        fs.writeFileSync(pluginsTsPath, pluginsTs);
-    }
-} catch (err) {
-    logger.warn('Failed to patch plugins.ts, installation might exit early!', err);
-}
-
 Object.keys(settings).forEach(function (key) {
     if (key.match(/ep_/)) {
         const pluginConfig = settings[key];
@@ -151,21 +137,43 @@ Object.keys(settings).forEach(function (key) {
         const type = pluginConfig.type;
         const gitPath = pluginConfig.path;
 
+        let installMethod = null;
+        let installArg = null;
+
         if (type === 'git' && gitPath) {
-            try {
-                let githubRepo = gitPath;
-                if (githubRepo.includes('github.com')) {
-                    githubRepo = githubRepo.replace('git@github.com:', '').replace('https://github.com/', '').replace('.git', '');
-                }
-                logger.info('Installing plugin from git/github: ' + key + ' (' + githubRepo + ')');
-                childProcess.execSync('pnpm run plugins i --github ' + githubRepo, {cwd: 'etherpad-lite/bin', stdio: 'inherit'});
-            } catch (pluginErr) {
-                logger.error('FAILED to install plugin from git: ' + key + '. Error: ' + pluginErr.message);
+            let githubRepo = gitPath;
+            if (githubRepo.includes('github.com')) {
+                githubRepo = githubRepo.replace('git@github.com:', '').replace('https://github.com/', '').replace('.git', '');
             }
+            installMethod = 'installFromGitHub';
+            installArg = `'${githubRepo}'`;
+            logger.info('Installing plugin from git/github: ' + key + ' (' + githubRepo + ')');
         } else if (version) {
+            installMethod = 'installPlugin';
+            installArg = `'${key}', '${version}'`;
+            logger.info('Installing plugin: ' + key + '@' + version);
+        }
+
+        if (installMethod) {
             try {
-                logger.info('Installing plugin: ' + key + '@' + version);
-                childProcess.execSync('pnpm run plugins i '+ key + '@' + version, {cwd: 'etherpad-lite/bin', stdio: 'inherit'});
+                const bridgeScript = `
+import {linkInstaller, checkForMigration} from 'ep_etherpad-lite/static/js/pluginfw/installer';
+import {persistInstalledPlugins} from './bin/commonPlugins';
+(async () => {
+  try {
+    await checkForMigration();
+    await linkInstaller.${installMethod}(${installArg});
+    await persistInstalledPlugins();
+    process.exit(0);
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+})();
+`;
+                const bridgePath = path.resolve('./etherpad-lite/bridge_install.ts');
+                fs.writeFileSync(bridgePath, bridgeScript);
+                childProcess.execSync('node --import tsx bridge_install.ts', {cwd: 'etherpad-lite', stdio: 'inherit'});
             } catch (pluginErr) {
                 logger.error('FAILED to install plugin: ' + key + '. Error: ' + pluginErr.message);
             }
