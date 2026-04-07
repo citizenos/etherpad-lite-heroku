@@ -161,11 +161,13 @@ Object.keys(settings).forEach(function (key) {
 if (pluginsToInstall.length > 0) {
     try {
         const bridgeScript = `
-import {linkInstaller, checkForMigration} from 'ep_etherpad-lite/static/js/pluginfw/installer';
-import {persistInstalledPlugins} from './etherpad-lite/bin/commonPlugins';
-await (async () => {
+const {linkInstaller, checkForMigration} = require('./etherpad-lite/src/static/js/pluginfw/installer');
+const {persistInstalledPlugins} = require('./etherpad-lite/bin/commonPlugins');
+(async () => {
   try {
-    await checkForMigration();
+    if (checkForMigration) {
+        await checkForMigration();
+    }
     ${pluginsToInstall.map(p => `
     console.log('Installing ${p.name}...');
     await linkInstaller.${p.method}(${p.arg});`).join('\n')}
