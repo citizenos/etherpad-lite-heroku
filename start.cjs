@@ -129,6 +129,21 @@ if (etherpadSessionKey) {
 logger.info('\nFind plugin configuration from effective settings...');
 
 logger.info('Installing plugins...');
+
+// Runtime patch for plugins.ts to ensure it waits for async tasks to complete
+// This is necessary because we cannot easily modify the etherpad-lite submodule upstream
+try {
+    const pluginsTsPath = path.resolve('./etherpad-lite/bin/plugins.ts');
+    let pluginsTs = fs.readFileSync(pluginsTsPath, 'utf8');
+    if (!pluginsTs.includes('await (async () => {')) {
+        logger.info('Patching etherpad-lite/bin/plugins.ts for async support...');
+        pluginsTs = pluginsTs.replace(/(\(async \(\) => \{[\s\S]*?\}\)\(\);)/g, 'await $1');
+        fs.writeFileSync(pluginsTsPath, pluginsTs);
+    }
+} catch (err) {
+    logger.warn('Failed to patch plugins.ts, installation might exit early!', err);
+}
+
 Object.keys(settings).forEach(function (key) {
     if (key.match(/ep_/)) {
         const pluginConfig = settings[key];
@@ -150,7 +165,7 @@ Object.keys(settings).forEach(function (key) {
         } else if (version) {
             try {
                 logger.info('Installing plugin: ' + key + '@' + version);
-                childProcess.execSync('pnpm run plugins i '+ key + '@' + version + ' --confirm-modules-purge=false', {cwd: 'etherpad-lite/bin', stdio: 'inherit'});
+                childProcess.execSync('pnpm run plugins i '+ key + '@' + version, {cwd: 'etherpad-lite/bin', stdio: 'inherit'});
             } catch (pluginErr) {
                 logger.error('FAILED to install plugin: ' + key + '. Error: ' + pluginErr.message);
             }
