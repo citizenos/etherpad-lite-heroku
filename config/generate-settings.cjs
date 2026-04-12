@@ -3,6 +3,28 @@
 const fs = require('fs');
 const path = require('path');
 
+function deepMerge(target, ...sources) {
+  for (const source of sources) {
+    if (source && typeof source === 'object') {
+      for (const key of Object.keys(source)) {
+        if (
+          source[key] &&
+          typeof source[key] === 'object' &&
+          !Array.isArray(source[key])
+        ) {
+          if (!target[key] || typeof target[key] !== 'object') {
+            target[key] = {};
+          }
+          deepMerge(target[key], source[key]);
+        } else {
+          target[key] = source[key];
+        }
+      }
+    }
+  }
+  return target;
+}
+
 // Default settings
 const defaultSettings = {
   title: "Etherpad-Lite / CitizenOS",
@@ -185,7 +207,7 @@ const pluginSettings = {
 };
 
 // Merge settings with environment variables
-const settings = {
+let settings = {
   ...defaultSettings,
   title: process.env.ETHERPAD_TITLE || defaultSettings.title,
   ip: process.env.ETHERPAD_IP || defaultSettings.ip,
@@ -205,6 +227,47 @@ const settings = {
   skinVariants: process.env.ETHERPAD_SKIN_VARIANTS || defaultSettings.skinVariants,
   ...pluginSettings
 };
+
+if (process.env.ETHERPAD_SETTINGS) {
+  try {
+    const settingsEnv = JSON.parse(process.env.ETHERPAD_SETTINGS);
+    console.log('ETHERPAD_SETTINGS found and parsed successfully.');
+    settings = deepMerge(settings, settingsEnv);
+  } catch (err) {
+    console.error('ETHERPAD_SETTINGS INVALID! Please make sure defined value is a valid JSON string!', err.message);
+  }
+}
+
+// Parse DATABASE_URL if available
+const databaseUrl = process.env.DATABASE_URL;
+if (databaseUrl) {
+  console.log('Overriding database configuration from DATABASE_URL!');
+  const settingsDb = {};
+  settingsDb.dbType = databaseUrl.split(':')[0];
+  settingsDb.dbSettings = databaseUrl + '?ssl=true';
+  settings = deepMerge(settings, settingsDb);
+}
+
+if (typeof settings.dbSettings === 'string') {
+  console.log('DB configuration seems to be a string, parsing it into object.');
+  const dbSettingsString = settings.dbSettings;
+  let [url, params] = dbSettingsString.split('?');
+  const matches = url.match(/^(?<type>.*?):\/\/(?<user>.*?)\:(?<password>.*?)@(?<host>.*?)\:(?<port>.*=?)\/(?<database>[^?]*)/);
+
+  if (matches && matches.groups) {
+    const dbSettingsObject = matches.groups;
+    if (params) {
+      const urlSearchParams = new URLSearchParams(params);
+      urlSearchParams.forEach(function (value, key) {
+        dbSettingsObject[key] = value;
+      });
+    }
+    settings.dbType = dbSettingsObject.type;
+    settings.dbSettings = dbSettingsObject;
+  } else {
+    console.error('Invalid DB connection string provided as "dbSettings"');
+  }
+}
 
 // Write settings to file
 const settingsPath = process.env.SETTINGS_PATH || '/opt/etherpad-lite/settings.json';
