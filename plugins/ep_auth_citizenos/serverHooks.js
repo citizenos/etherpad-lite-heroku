@@ -329,7 +329,8 @@ exports.preAuthorize = (hook, { req }) => {
         'manifest\\.json',
         'padbootstrap-.*\\.min\\.js',
         'pluginfw/.*',
-        'static/.*'
+        'static/.*',
+        'watch/.*'
     ].join('|')})$`);
 
     if (req.path.match(staticPathsRE)) return true; // Allow access, next handlers are skipped
@@ -345,7 +346,7 @@ exports.authenticate = async (hook, { req, users }) => {
     }
 
     // Skip authorization for some paths...
-    if (req.path.match(/^\/(jserror|favicon|locales|static|javascripts|pluginfw|api|health)/)) {
+    if (req.path.match(/^\/(jserror|favicon|locales|static|javascripts|pluginfw|api|health|watch)/)) {
         return true;
     }
 
