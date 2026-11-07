@@ -283,17 +283,21 @@ try {
 }
 logger.info('Configuration done!\n');
 
-// Run Etherpad via absolute path to bin/run.sh so dirname "$0" inside run.sh resolves properly
-let serverCommand = path.resolve(__dirname, 'etherpad-lite/bin/run.sh');
-let args = [];
+// Run Etherpad directly via node/server.ts to avoid bin/run.sh re-running installDeps.sh at boot time
+const serverCommand = 'node';
+const args = ['--require', 'tsx/cjs', 'node/server.ts'];
+const serverCwd = path.resolve(__dirname, 'etherpad-lite/src');
 
 if (process.env.ETHERPAD_ALLOW_ROOT) {
     args.push('--root');
 }
 
-logger.info('Starting Etherpad server with command: ' + serverCommand + ' ' + args.join(' '));
+logger.info(`Starting Etherpad server with command: ${serverCommand} ${args.join(' ')} (cwd: ${serverCwd})`);
 
-const serverProcess = childProcess.spawn(serverCommand, args, { stdio: 'inherit' });
+const serverProcess = childProcess.spawn(serverCommand, args, {
+    cwd: serverCwd,
+    stdio: 'inherit'
+});
 
 serverProcess.on('close', (code) => {
     logger.info(`Etherpad process exited with code ${code}`);

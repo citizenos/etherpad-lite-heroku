@@ -30,3 +30,6 @@ etherpad-lite/admin/node_modules
 etherpad-lite/ui/node_modules
 etherpad-lite/bin/node_modules
 etherpad-lite/doc/node_modules
+etherpad-lite/src/plugin_packages
+etherpad-lite/var
+
