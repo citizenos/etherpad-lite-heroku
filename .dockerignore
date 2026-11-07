@@ -19,4 +19,14 @@
 .gitignore
 
 settings.json
+etherpad-lite/settings.json
+etherpad-lite/APIKEY.txt
+etherpad-lite/SESSIONKEY.txt
+config/local.json
+node_modules
 src/node_modules
+etherpad-lite/src/node_modules
+etherpad-lite/admin/node_modules
+etherpad-lite/ui/node_modules
+etherpad-lite/bin/node_modules
+etherpad-lite/doc/node_modules

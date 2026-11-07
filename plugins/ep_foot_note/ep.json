@@ -1,0 +1,31 @@
+{
+    "parts":[
+        {
+            "name":"foot_note",
+            "pre": ["ep_etherpad-lite/webaccess"],
+            "client_hooks":{
+                "aceEditorCSS": "ep_foot_note/static/js/footNote",
+                "aceCreateDomLine": "ep_foot_note/static/js/footNote",
+                "aceInitialized":"ep_foot_note/static/js/footNote",
+                "aceAttribsToClasses":"ep_foot_note/static/js/footNote",
+                "aceAttribClasses":"ep_foot_note/static/js/footNote",
+                "collectContentPre":"ep_foot_note/static/js/shared",
+                "aceRegisterBlockElements":"ep_foot_note/static/js/footNote",
+                "postToolbarInit": "ep_foot_note/static/js/footNote",
+                "collectContentPost": "ep_foot_note/static/js/shared",
+                "aceDomLineProcessLineAttributes": "ep_foot_note/static/js/footNote",
+                "aceEditEvent": "ep_foot_note/static/js/footNote"
+            },
+            "hooks":{
+                "collectContentPre":"ep_foot_note/static/js/shared",
+                "aceAttribClasses": "ep_foot_note/footNote",
+                "exportHtmlAdditionalTags": "ep_foot_note/exportHTML",
+                "getLineHTMLForExport":"ep_foot_note/exportHTML",
+                "eejsBlock_styles": "ep_foot_note/footNote",
+                "eejsBlock_body": "ep_foot_note/footNote",
+                "padInitToolbar": "ep_foot_note/footNote",
+                "collectContentPost": "ep_foot_note/static/js/shared"
+            }
+        }
+    ]
+}

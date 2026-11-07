@@ -1,0 +1,8 @@
+{
+    "ep_foot_note.toolbar.add_foot_note.title" : "Inserisci nota a piè di pagina",
+    "ep_foot_note.input_placeholder": "Inserisci qui la tua nota a piè di pagina…",
+    "ep_foot_note.btn_submit": "Inserisci",
+    "ep_foot_note.btn_cancel": "Annulla",
+    "ep_foot_note.title": "Inserisci una nota a piè di pagina",
+    "ep_foot_note.description": "Le note a piè di pagina sono utili per inserire riferimenti nel documento."
+}

@@ -1,0 +1,23 @@
+{
+  "parts": [
+    {
+      "name": "main",
+      "client_hooks": {
+        "postAceInit": "ep_add_hyperlink/static/js/index",
+        "aceInitialized": "ep_add_hyperlink/static/js/index",
+        "postToolbarInit": "ep_add_hyperlink/static/js/index",
+        "aceCreateDomLine": "ep_add_hyperlink/static/js/index",
+        "acePostWriteDomLineHTML": "ep_add_hyperlink/static/js/index",
+        "aceAttribsToClasses": "ep_add_hyperlink/static/js/index",
+        "aceSelectionChanged": "ep_add_hyperlink/static/js/index",
+        "collectContentPre": "ep_add_hyperlink/static/js/index"
+      },
+      "hooks": {
+        "padInitToolbar": "ep_add_hyperlink/index",
+        "eejsBlock_body": "ep_add_hyperlink/index",
+        "exportHtmlAdditionalTagsWithData": "ep_add_hyperlink/index",
+        "getLineHTMLForExport": "ep_add_hyperlink/index"
+      }
+    }
+  ]
+}

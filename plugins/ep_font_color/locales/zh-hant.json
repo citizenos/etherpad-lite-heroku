@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kly"
+		]
+	},
+	"ep_font_color.color": "顏色",
+	"ep_font_color.black": "黑",
+	"ep_font_color.red": "紅",
+	"ep_font_color.green": "綠",
+	"ep_font_color.blue": "藍",
+	"ep_font_color.yellow": "黃",
+	"ep_font_color.orange": "橙"
+}

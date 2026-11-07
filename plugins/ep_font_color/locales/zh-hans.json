@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"GuoPC",
+			"沈澄心"
+		]
+	},
+	"ep_font_color.color": "颜色",
+	"ep_font_color.black": "黑色",
+	"ep_font_color.red": "红色",
+	"ep_font_color.green": "绿色",
+	"ep_font_color.blue": "蓝色",
+	"ep_font_color.yellow": "黄色",
+	"ep_font_color.orange": "橙色"
+}

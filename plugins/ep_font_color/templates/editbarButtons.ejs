@@ -1,0 +1,28 @@
+<li class="separator acl-write"></li>
+<li class="acl-write font-color-icon ep_font_color">
+  <a title="Font color">
+    <span class="buttonicon"></span>
+  </a>
+</li>
+<li id="font-color" class="acl-write" style="display:none;">
+    <select class="color-selection">
+        <option value="dummy" selected data-l10n-id="ep_font_color.color">Color</option>
+        <option value="0" data-l10n-id="ep_font_color.black">black</option>
+        <option value="1" data-l10n-id="ep_font_color.red">red</option>
+        <option value="2" data-l10n-id="ep_font_color.green">green</option>
+        <option value="3" data-l10n-id="ep_font_color.blue">blue</option>
+        <option value="4" data-l10n-id="ep_font_color.yellow">yellow</option>
+        <option value="5" data-l10n-id="ep_font_color.orange">orange</option>
+    </select>
+</li>
+
+<style>
+.ep_font_color {
+  font-family:font-awesome;
+}
+.ep_font_color .buttonicon:before{
+  content:"\e81b";
+  top: 2px !important;
+  border-bottom:solid 1px red;
+}
+</style>

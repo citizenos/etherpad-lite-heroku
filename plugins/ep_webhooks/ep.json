@@ -1,0 +1,13 @@
+{
+    "parts": [
+        {
+            "name": "ep_webhooks",
+            "hooks": {
+                "loadSettings": "ep_webhooks/index",
+                "handleMessage": "ep_webhooks/index",
+                "padUpdate": "ep_webhooks/index",
+                "userLeave": "ep_webhooks/index"
+            }
+        }
+    ]
+}

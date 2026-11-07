@@ -1,10 +1,14 @@
 # Use the official Etherpad image as base
 FROM etherpad/etherpad:latest
 
-# Copy our settings generation script
-COPY ./config/generate-settings.cjs /opt/etherpad-lite/generate-settings.cjs
+USER root
 
-# Install our specific plugins
+# Copy our settings generation script, custom styles, and patched CitizenOS plugins
+COPY ./config/generate-settings.cjs /opt/etherpad-lite/generate-settings.cjs
+COPY ./custom/citizenos.css /opt/etherpad-lite/src/static/skins/colibris/citizenos.css
+COPY ./plugins/ /opt/etherpad-lite/citizenos-plugins/
+
+# Install plugins and overlay our Etherpad v3 patched plugin files + bundled locales
 RUN pnpm run plugins i \
     ep_align \
     ep_authorship_toggle \
@@ -18,12 +22,36 @@ RUN pnpm run plugins i \
     ep_resize \
     ep_themes_ext \
     ep_translations \
-    ep_webhooks
+    ep_webhooks && \
+    node -e ' \
+      const fs = require("fs"); \
+      const path = require("path"); \
+      const srcRoot = "/opt/etherpad-lite/citizenos-plugins"; \
+      const pkgRoot = "/opt/etherpad-lite/src/plugin_packages"; \
+      function copyRecursive(s, d) { \
+        fs.mkdirSync(d, { recursive: true }); \
+        for (const e of fs.readdirSync(s, { withFileTypes: true })) { \
+          if (e.name === "node_modules" || e.name === ".git") continue; \
+          const sp = path.join(s, e.name), dp = path.join(d, e.name); \
+          e.isDirectory() ? copyRecursive(sp, dp) : fs.copyFileSync(sp, dp); \
+        } \
+      } \
+      for (const name of fs.readdirSync(srcRoot)) { \
+        const pDir = path.join(srcRoot, name); \
+        const destLink = path.join(pkgRoot, name); \
+        if (fs.existsSync(pDir) && fs.existsSync(destLink)) { \
+          const realDest = fs.realpathSync(destLink); \
+          copyRecursive(pDir, realDest); \
+          console.log("Patched plugin:", name, "->", realDest); \
+        } \
+      } \
+    ' && \
+    rm -rf /opt/etherpad-lite/citizenos-plugins
 
 # Create an entrypoint script that generates settings and starts Etherpad
 RUN echo '#!/bin/bash' > /opt/etherpad-lite/entrypoint.sh && \
     echo 'node /opt/etherpad-lite/generate-settings.cjs' >> /opt/etherpad-lite/entrypoint.sh && \
-    echo '/opt/etherpad-lite/bin/run.sh' >> /opt/etherpad-lite/entrypoint.sh && \
+    echo '/opt/etherpad-lite/bin/run.sh --root' >> /opt/etherpad-lite/entrypoint.sh && \
     chmod +x /opt/etherpad-lite/entrypoint.sh
 
 # Expose port

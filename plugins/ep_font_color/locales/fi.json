@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Maantietäjä"
+		]
+	},
+	"ep_font_color.color": "Väri",
+	"ep_font_color.black": "musta",
+	"ep_font_color.red": "punainen",
+	"ep_font_color.green": "vihreä",
+	"ep_font_color.blue": "sininen",
+	"ep_font_color.yellow": "keltainen.",
+	"ep_font_color.orange": "oranssi."
+}

@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Veracious"
+		]
+	},
+	"ep_font_color.color": "Warna",
+	"ep_font_color.black": "hitam",
+	"ep_font_color.red": "merah",
+	"ep_font_color.green": "hijau",
+	"ep_font_color.blue": "biru",
+	"ep_font_color.yellow": "kuning",
+	"ep_font_color.orange": "jingga"
+}

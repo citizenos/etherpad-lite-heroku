@@ -1,0 +1,16 @@
+{
+    "parts": [
+        {
+            "name": "ep_themes_ext",
+            "pre": ["ep_inline_toolbar", "ep_*"],
+            "hooks": {
+                "clientVars": "ep_themes_ext/serverHooks:clientVars"
+            },
+            "client_hooks": {
+                "aceEditorCSS": "ep_themes_ext/static/js/clientHooks:aceEditorCSS",
+                "aceInitialized": "ep_themes_ext/static/js/clientHooks:aceInitialized",
+                "postTimesliderInit": "ep_themes_ext/static/js/clientHooks:postTimesliderInit"
+            }
+        }
+    ]
+}

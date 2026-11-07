@@ -1,0 +1,3 @@
+#outerdocbody {
+    min-height: auto; /* override - https://github.com/ether/etherpad-lite/blob/7d5cad693291db49c7e0eaf62117c660dccc0c6a/src/static/css/iframe_editor.css#L44 */
+}

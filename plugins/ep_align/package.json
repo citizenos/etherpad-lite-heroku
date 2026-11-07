@@ -1,0 +1,42 @@
+{
+  "author": {
+    "name": "John McLear",
+    "email": "john@mclear.co.uk"
+  },
+  "license": "Apache2",
+  "bugs": {
+    "url": "https://github.com/ether/ep_align/issues"
+  },
+  "description": "Etherpad plugin to set left, center, right, or full justification for a paragraph",
+  "homepage": "https://github.com/ether/ep_align#readme",
+  "keywords": [
+    "etherpad",
+    "plugin",
+    "ep"
+  ],
+  "name": "ep_align",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ether/ep_align.git"
+  },
+  "version": "0.3.96",
+  "funding": {
+    "type": "individual",
+    "url": "https://etherpad.org/"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.12.4",
+    "eslint": "^8.57.0",
+    "eslint-config-etherpad": "^4.0.4",
+    "mocha": "^10.4.0",
+    "typescript": "^5.4.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
+  }
+}

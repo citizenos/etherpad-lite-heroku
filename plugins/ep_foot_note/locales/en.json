@@ -1,0 +1,8 @@
+{
+    "ep_foot_note.toolbar.add_foot_note.title" : "Insert footnote",
+    "ep_foot_note.input_placeholder": "Add your footnote here…",
+    "ep_foot_note.btn_submit": "Insert",
+    "ep_foot_note.btn_cancel": "Cancel",
+    "ep_foot_note.title": "Add a footnote",
+    "ep_foot_note.description": "Footnotes can include anything from a citation to parenthetical information, outside sources, copyright permissions, background information. The selected text will receive a number which will refer to the explanation on the bottom of the topic."
+}

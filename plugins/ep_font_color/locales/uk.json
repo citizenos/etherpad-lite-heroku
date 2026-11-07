@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"DDPAT",
+			"Ice bulldog"
+		]
+	},
+	"ep_font_color.color": "Колір",
+	"ep_font_color.black": "чорний",
+	"ep_font_color.red": "червоний",
+	"ep_font_color.green": "зелений",
+	"ep_font_color.blue": "синій",
+	"ep_font_color.yellow": "жовтий",
+	"ep_font_color.orange": "помаранчевий"
+}

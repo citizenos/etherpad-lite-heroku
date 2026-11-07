@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Veracious"
+		]
+	},
+	"ep_align.align": "Rata",
+	"ep_align.toolbar.left.title": "Kiri",
+	"ep_align.toolbar.center.title": "Tengah",
+	"ep_align.toolbar.right.title": "Kanan"
+}

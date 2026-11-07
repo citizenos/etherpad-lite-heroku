@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Finizio"
+		]
+	},
+	"ep_font_color.color": "Culore",
+	"ep_font_color.black": "Niro",
+	"ep_font_color.red": "roscio",
+	"ep_font_color.green": "verde",
+	"ep_font_color.blue": "blu",
+	"ep_font_color.yellow": "giallo"
+}

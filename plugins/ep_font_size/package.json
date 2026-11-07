@@ -1,0 +1,40 @@
+{
+  "description": "Apply sizes to fonts",
+  "name": "ep_font_size",
+  "version": "0.4.61",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "John McLear",
+    "email": "john@mclear.co.uk"
+  },
+  "keywords": [
+    "ep",
+    "etherpad",
+    "plugin"
+  ],
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ether/ep_font_size.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ether/ep_font_size/issues"
+  },
+  "homepage": "https://github.com/ether/ep_font_size#readme",
+  "funding": {
+    "type": "individual",
+    "url": "https://etherpad.org/"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-etherpad": "^4.0.4",
+    "typescript": "^5.4.2"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
+  }
+}

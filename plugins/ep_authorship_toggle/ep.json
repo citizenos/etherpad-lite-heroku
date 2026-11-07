@@ -1,0 +1,16 @@
+{
+    "parts": [
+        {
+            "name": "ep_authorship_toggle",
+            "client_hooks": {
+                "postToolbarInit": "ep_authorship_toggle/static/js/clientHooks:postToolbarInit",
+                "aceSetAuthorStyle": "ep_authorship_toggle/static/js/clientHooks:aceSetAuthorStyle"
+            },
+            "hooks": {
+                "padInitToolbar": "ep_authorship_toggle/serverHooks:padInitToolbar",
+                "eejsBlock_afterEditbar": "ep_authorship_toggle/serverHooks:eejsBlock_afterEditbar",
+                "eejsBlock_styles": "ep_authorship_toggle/serverHooks:eejsBlock_styles"
+            }
+        }
+    ]
+}

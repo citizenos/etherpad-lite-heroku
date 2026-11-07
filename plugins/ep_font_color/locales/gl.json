@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ghose"
+		]
+	},
+	"ep_font_color.color": "Cor",
+	"ep_font_color.black": "negro",
+	"ep_font_color.red": "vermello",
+	"ep_font_color.green": "verde",
+	"ep_font_color.blue": "azul",
+	"ep_font_color.yellow": "amarelo",
+	"ep_font_color.orange": "laranxa"
+}

@@ -1,0 +1,12 @@
+#epAuthorshipToggleAuthorList {
+    display: none;
+    position: fixed;
+    z-index: 250;
+    width: 100%;
+    padding: 1em;
+}
+
+#authorsList .author {
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+}

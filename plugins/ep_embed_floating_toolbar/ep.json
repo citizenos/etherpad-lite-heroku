@@ -1,0 +1,11 @@
+{
+    "parts": [
+        {
+            "name": "ep_embed_floating_toolbar",
+            "client_hooks": {
+                "documentReady": "ep_embed_floating_toolbar/static/js/clientHooks:documentReady",
+                "postTimesliderInit": "ep_embed_floating_toolbar/static/js/clientHooks:postTimesliderInit"
+            }
+        }
+    ]
+}

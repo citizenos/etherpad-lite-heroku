@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mguix"
+		]
+	},
+	"ep_font_color.color": "Color",
+	"ep_font_color.black": "negre",
+	"ep_font_color.red": "vermell",
+	"ep_font_color.green": "verd",
+	"ep_font_color.blue": "blau",
+	"ep_font_color.yellow": "groc",
+	"ep_font_color.orange": "taronja"
+}

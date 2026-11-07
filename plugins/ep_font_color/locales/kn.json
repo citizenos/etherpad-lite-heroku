@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"ಮಲ್ನಾಡಾಚ್ ಕೊಂಕ್ಣೊ"
+		]
+	},
+	"ep_font_color.color": "ಬಣ್ಣ",
+	"ep_font_color.black": "ಕಪ್ಪು",
+	"ep_font_color.red": "ಕೆಂಪು",
+	"ep_font_color.green": "ಹಸಿರು",
+	"ep_font_color.blue": "ನೀಲಿ",
+	"ep_font_color.yellow": "ಹಳದಿ",
+	"ep_font_color.orange": "ಕೇಸರಿ"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "ep_foot_note",
+  "version": "0.1.7",
+  "keywords": [
+    "footnote",
+    "footer",
+    "etherpad"
+  ],
+  "description": "Foot Note plugin for Etherpad-Lite (https://etherpad.org/)",
+  "license": "ISC",
+  "author": {
+    "name": "Lokesh N",
+    "email": "nlokesh.17@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Lokesh N",
+      "email": "nlokesh.17@gmail.com"
+    },
+    {
+      "name": "Ilmar Türk",
+      "email": "ilmar@citizenos.com"
+    }
+  ],
+  "dependencies": {},
+  "main": "footNote.js",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/citizenos/ep_foot_note.git"
+  },
+  "bugs": {
+    "url": "https://github.com/citizenos/ep_foot_note/issues"
+  },
+  "homepage": "https://github.com/citizenos/ep_foot_note",
+  "devDependencies": {
+    "eslint": "^8.51.0",
+    "eslint-config-etherpad": "^3.0.22",
+    "eslint-plugin-cypress": "^2.15.1",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-mocha": "^10.2.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-promise": "^6.1.1"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": "etherpad/plugin"
+  },
+  "peerDependencies": {
+    "ep_etherpad-lite": ">=1.8.6"
+  }
+}

@@ -35,19 +35,17 @@ const defaultSettings = {
   requireSession: false,
   editOnly: true,
   authenticationMethod: "apikey",
+  enableDarkMode: false,
   skinName: "colibris",
   minify: false,
   maxAge: 21600,
-  abiword: null,
   requireAuthentication: true,
   requireAuthorization: true,
   trustProxy: true,
-  disableIPlogging: false,
+  ipLogging: "full",
   socketTransportProtocols: [
     "websocket",
-    "xhr-polling",
-    "jsonp-polling",
-    "htmlfile"
+    "polling"
   ],
   loglevel: "INFO",
   logconfig: {
@@ -63,8 +61,8 @@ const defaultSettings = {
     showChat: false,
     showLineNumbers: false,
     useMonospaceFont: false,
-    userName: false,
-    userColor: false,
+    userName: null,
+    userColor: null,
     rtl: false,
     alwaysShowChat: false,
     chatAndUsers: false,
@@ -107,17 +105,6 @@ const defaultSettings = {
     timeslider: [
       [
         "timeslider_returnToPad"
-      ]
-    ],
-    custom_inline: [
-      [
-        {
-          createVote: {
-            buttonType: "link",
-            title: "Create new mini-vote",
-            localizationId: "ep_inline_voting.title_create_voting"
-          }
-        }
       ]
     ]
   }
@@ -184,15 +171,15 @@ const pluginSettings = {
     ___version: process.env.EP_THEMES_EXT_VERSION || "0.0.10",
     default: process.env.EP_THEMES_EXT_DEFAULT ?
       process.env.EP_THEMES_EXT_DEFAULT.split(',') :
-      ["https://dev.app.citizenos.com:3003/etherpad.css"],
+      ["/static/skins/colibris/citizenos.css"],
     "citizenos.com": process.env.EP_THEMES_EXT_CITIZENOS ?
       process.env.EP_THEMES_EXT_CITIZENOS.split(',') :
-      ["https://dev.app.citizenos.com:3003/etherpad.css"]
+      ["/static/skins/colibris/citizenos.css"]
   },
   ep_translations: {
     ___version: process.env.EP_TRANSLATIONS_VERSION || "0.0.17",
     type: "git",
-    path: process.env.EP_TRANSLATIONS_PATH || "git@github.com:citizenos/etherpad_translations.git",
+    path: process.env.EP_TRANSLATIONS_PATH || "https://github.com/citizenos/etherpad_translations.git",
     savePath: process.env.EP_TRANSLATIONS_SAVE_PATH || "/tmp/ep_translations"
   },
   ep_webhooks: {
@@ -211,7 +198,7 @@ let settings = {
   ...defaultSettings,
   title: process.env.ETHERPAD_TITLE || defaultSettings.title,
   ip: process.env.ETHERPAD_IP || defaultSettings.ip,
-  port: parseInt(process.env.ETHERPAD_PORT) || defaultSettings.port,
+  port: parseInt(process.env.PORT || process.env.ETHERPAD_PORT) || defaultSettings.port,
   defaultPadText: process.env.ETHERPAD_DEFAULT_PAD_TEXT || defaultSettings.defaultPadText,
   requireSession: process.env.ETHERPAD_REQUIRE_SESSION === 'true' || defaultSettings.requireSession,
   editOnly: process.env.ETHERPAD_EDIT_ONLY === 'true' || defaultSettings.editOnly,
@@ -222,7 +209,7 @@ let settings = {
   requireAuthentication: process.env.ETHERPAD_REQUIRE_AUTHENTICATION === 'true' || defaultSettings.requireAuthentication,
   requireAuthorization: process.env.ETHERPAD_REQUIRE_AUTHORIZATION === 'true' || defaultSettings.requireAuthorization,
   trustProxy: process.env.ETHERPAD_TRUST_PROXY === 'true' || defaultSettings.trustProxy,
-  disableIPlogging: process.env.ETHERPAD_DISABLE_IP_LOGGING === 'true' || defaultSettings.disableIPlogging,
+  ipLogging: process.env.ETHERPAD_DISABLE_IP_LOGGING ? (process.env.ETHERPAD_DISABLE_IP_LOGGING === 'true' ? 'anonymous' : 'full') : defaultSettings.ipLogging,
   loglevel: process.env.ETHERPAD_LOG_LEVEL || defaultSettings.loglevel,
   skinVariants: process.env.ETHERPAD_SKIN_VARIANTS || defaultSettings.skinVariants,
   ...pluginSettings
@@ -269,12 +256,56 @@ if (typeof settings.dbSettings === 'string') {
   }
 }
 
+// Write APIKEY.txt if provided via ETHERPAD_API_KEY or ___apiKey
+const etherpadApiKey = process.env.ETHERPAD_API_KEY || settings.___apiKey;
+if (etherpadApiKey) {
+  const apiKeyPath = process.env.APIKEY_PATH || '/opt/etherpad-lite/APIKEY.txt';
+  try {
+    fs.writeFileSync(apiKeyPath, etherpadApiKey);
+    console.log(`APIKEY written to ${apiKeyPath}`);
+  } catch (err) {
+    console.warn(`Could not write APIKEY to ${apiKeyPath}:`, err.message);
+  }
+  delete settings.___apiKey;
+}
+delete settings.___sessionKey;
+
+if (settings.abiword === null) {
+  delete settings.abiword;
+}
+if ('disableIPlogging' in settings) {
+  if (settings.ipLogging === undefined) {
+    settings.ipLogging = settings.disableIPlogging ? 'anonymous' : 'full';
+  }
+  delete settings.disableIPlogging;
+}
+if (typeof settings.ipLogging === 'boolean') {
+  settings.ipLogging = settings.ipLogging ? 'full' : 'anonymous';
+}
+if (settings.padOptions && typeof settings.padOptions === 'object') {
+  if (settings.padOptions.userName === false) settings.padOptions.userName = null;
+  if (settings.padOptions.userColor === false) settings.padOptions.userColor = null;
+}
+if (Array.isArray(settings.socketTransportProtocols)) {
+  settings.socketTransportProtocols = ['websocket', 'polling'];
+}
+if (settings.toolbar && typeof settings.toolbar === 'object') {
+  delete settings.toolbar.custom_inline;
+}
+
+Object.keys(settings).forEach((key) => {
+  if (key.startsWith('ep_') && settings[key] && typeof settings[key] === 'object') {
+    delete settings[key].___version;
+    if (key !== 'ep_translations') {
+      delete settings[key].type;
+      delete settings[key].path;
+      delete settings[key].savePath;
+    }
+  }
+});
+
 // Write settings to file
 const settingsPath = process.env.SETTINGS_PATH || '/opt/etherpad-lite/settings.json';
 fs.writeFileSync(settingsPath, JSON.stringify(settings, null, 2));
 
 console.log(`Settings written to ${settingsPath}`);
-console.log('Environment variables used:');
-Object.keys(process.env).filter(key => key.startsWith('ETHERPAD_') || key.startsWith('EP_')).forEach(key => {
-  console.log(`  ${key}=${process.env[key]}`);
-});

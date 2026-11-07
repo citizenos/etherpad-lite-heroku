@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Norhorn"
+		]
+	},
+	"ep_font_color.color": "Χρώμα",
+	"ep_font_color.black": "μαύρο",
+	"ep_font_color.red": "κόκκινο",
+	"ep_font_color.green": "πράσινο",
+	"ep_font_color.blue": "μπλε",
+	"ep_font_color.yellow": "κίτρινο",
+	"ep_font_color.orange": "πορτοκαλί"
+}

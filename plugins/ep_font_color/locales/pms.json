@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Borichèt"
+		]
+	},
+	"ep_font_color.color": "Color",
+	"ep_font_color.black": "nèir",
+	"ep_font_color.red": "ross",
+	"ep_font_color.green": "verd",
+	"ep_font_color.blue": "bleu",
+	"ep_font_color.yellow": "giàun",
+	"ep_font_color.orange": "groson"
+}

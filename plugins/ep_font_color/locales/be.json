@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kareyac"
+		]
+	},
+	"ep_font_color.color": "Колер",
+	"ep_font_color.black": "чорны",
+	"ep_font_color.red": "чырвоны",
+	"ep_font_color.green": "зялёны",
+	"ep_font_color.yellow": "жоўты",
+	"ep_font_color.orange": "аранжавы"
+}

@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar",
+			"HairyFotr"
+		]
+	},
+	"ep_font_color.color": "Barva",
+	"ep_font_color.black": "črna",
+	"ep_font_color.red": "rdeča",
+	"ep_font_color.green": "zelena",
+	"ep_font_color.blue": "modra",
+	"ep_font_color.yellow": "rumena",
+	"ep_font_color.orange": "oranžna"
+}

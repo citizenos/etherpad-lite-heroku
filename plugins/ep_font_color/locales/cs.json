@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Spotter"
+		]
+	},
+	"ep_font_color.color": "Barva",
+	"ep_font_color.black": "černá",
+	"ep_font_color.red": "červená",
+	"ep_font_color.green": "zelená",
+	"ep_font_color.blue": "modrá",
+	"ep_font_color.yellow": "žlutá",
+	"ep_font_color.orange": "oranžová"
+}

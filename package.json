@@ -32,12 +32,19 @@
     "list-plugins": "pnpm --filter bin run list-plugins",
     "build:etherpad": "pnpm --filter admin run build-copy && pnpm --filter ui run build-copy",
     "build:ui": "pnpm --filter ui run build-copy && pnpm --filter admin run build-copy",
+    "setup:plugins": "node scripts/install-plugins.cjs",
     "makeDocs": "pnpm --filter bin run makeDocs",
     "start": "node start.cjs"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "ep_etherpad-lite": "workspace:./etherpad-lite/src",
+    "jsdom": "^22.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "lodash.debounce": "^4.0.8",
     "log4js": "^6.9.1",
+    "simple-git": "^3.20.0",
+    "superagent": "^8.1.2",
     "tsx": "^4.19.3"
   },
   "devDependencies": {

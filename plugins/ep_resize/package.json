@@ -1,0 +1,38 @@
+{
+  "name": "ep_resize",
+  "version": "0.0.18",
+  "description": "Receive a postMessage when Etherpad Lite pad content size changes.",
+  "author": {
+    "name": "tiblu"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/citizenos/ep_resize.git"
+  },
+  "devDependencies": {
+    "eslint": "^8.51.0",
+    "eslint-config-etherpad": "^3.0.22",
+    "eslint-plugin-cypress": "^2.15.1",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-mocha": "^10.2.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-promise": "^6.1.1",
+    "request": "*"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": "etherpad/plugin"
+  },
+  "readmeFilename": "README.md",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
+  },
+  "peerDependencies": {
+    "ep_etherpad-lite": ">=1.8.6"
+  }
+}

@@ -1,0 +1,34 @@
+{
+    "name": "ep_themes_ext",
+    "version": "0.0.10",
+    "description": "An Etherpad Lite plugin that allows you to load external CSS stylesheets to change the layout.",
+    "author": {
+        "name": "Tiblu"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/citizenos/ep_themes_ext.git"
+    },
+    "devDependencies": {
+        "eslint": "^8.51.0",
+        "eslint-config-etherpad": "^3.0.22",
+        "eslint-plugin-cypress": "^2.15.1",
+        "eslint-plugin-eslint-comments": "^3.2.0",
+        "eslint-plugin-mocha": "^10.2.0",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-prefer-arrow": "^1.2.3",
+        "eslint-plugin-promise": "^6.1.1",
+        "request": "*"
+    },
+    "eslintConfig": {
+        "root": true,
+        "extends": "etherpad/plugin"
+    },
+    "readmeFilename": "README.md",
+    "peerDependencies": {
+        "ep_etherpad-lite": ">=1.8.6"
+    },
+    "scripts": {
+        "lint": "eslint ."
+    }
+}

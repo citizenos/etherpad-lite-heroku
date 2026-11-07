@@ -1,0 +1,12 @@
+{
+    "parts": [
+        {
+            "name": "ep_resize",
+            "client_hooks": {
+                "aceEditorCSS": "ep_resize/static/js/index",
+                "aceEditEvent": "ep_resize/static/js/index:aceEditEvent",
+                "goToRevisionEvent": "ep_resize/static/js/index"
+            }
+        }
+    ]
+}

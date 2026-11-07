@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"ep_font_color.color": "Color",
+	"ep_font_color.black": "nigre",
+	"ep_font_color.red": "rubie",
+	"ep_font_color.green": "verde",
+	"ep_font_color.blue": "blau",
+	"ep_font_color.yellow": "jalne",
+	"ep_font_color.orange": "orange"
+}

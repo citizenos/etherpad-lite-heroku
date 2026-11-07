@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mrkczr"
+		]
+	},
+	"ep_font_color.color": "Kulay",
+	"ep_font_color.black": "itim",
+	"ep_font_color.red": "pula",
+	"ep_font_color.green": "berde",
+	"ep_font_color.blue": "asul",
+	"ep_font_color.yellow": "dilaw",
+	"ep_font_color.orange": "kahel"
+}

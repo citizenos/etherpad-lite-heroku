@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Michawiki"
+		]
+	},
+	"ep_font_color.color": "Barba",
+	"ep_font_color.black": "čorny",
+	"ep_font_color.red": "čerwjeny",
+	"ep_font_color.green": "zeleny",
+	"ep_font_color.blue": "módry",
+	"ep_font_color.yellow": "žołty",
+	"ep_font_color.orange": "oranžowy"
+}

@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Patriot Kor"
+		]
+	},
+	"ep_font_color.black": "siyo",
+	"ep_font_color.red": "sı",
+	"ep_font_color.green": "havz",
+	"ep_font_color.blue": "kavu",
+	"ep_font_color.yellow": "zard",
+	"ep_font_color.orange": "nonc"
+}

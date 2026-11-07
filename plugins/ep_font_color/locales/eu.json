@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Izendegi"
+		]
+	},
+	"ep_font_color.color": "Kolorea",
+	"ep_font_color.black": "beltza",
+	"ep_font_color.red": "gorria",
+	"ep_font_color.green": "berdea",
+	"ep_font_color.blue": "urdina",
+	"ep_font_color.yellow": "horia",
+	"ep_font_color.orange": "laranja"
+}

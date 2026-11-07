@@ -1,0 +1,53 @@
+#editbar #epCitizenOSUserListToggleCount {
+    font-size: 1.1em;
+    top: 2px;
+    padding: 10px;
+    color: #777;
+}
+
+#epCitizenOSUserList {
+    line-height: 1.625em;
+    position: absolute;
+    display: none;
+}
+
+#epCitizenOSUserList.popup.popup-show {
+    top: inherit !important;
+    bottom: 55px;
+}
+
+#epCitizenOSUserList ul {
+    list-style-type: none;
+}
+
+#epCitizenOSUserList ul li {
+    padding: 0.25em 0;
+}
+
+#epCitizenOSUserList ul li:first-of-type {
+    padding-top: 0;
+}
+
+#epCitizenOSUserList ul li:last-of-type {
+    padding-bottom: 0;
+}
+
+#epCitizenOSUserList ul li .swatchBox {
+    display: block;
+    position: absolute;
+    width: 1.5em;
+    height: 1.5em;
+    border: none;
+}
+
+#epCitizenOSUserList ul li.epCitizenOSUserListCurrent {
+
+}
+
+#epCitizenOSUserList ul .epCitizenOSUserListUserName {
+    margin-left: 2em;
+}
+
+#epCitizenOSUserList ul .epCitizenOSUserListAnonymous {
+
+}

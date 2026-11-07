@@ -18,17 +18,20 @@ WORKDIR /app
 # Copy workspace and wrapper configuration
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml start.cjs ./
 COPY config/ ./config/
+COPY scripts/ ./scripts/
+COPY custom/ ./custom/
+COPY plugins/ ./plugins/
 
 # Copy the etherpad-lite submodule contents
-# Note: In a real Git environment, this clones the submodule.
-# Here we copy the local state of the submodule.
 COPY etherpad-lite/ ./etherpad-lite/
 
 # Install all dependencies (root and workspace packages)
 RUN pnpm install
 
-# Build Etherpad UI
-RUN pnpm run build:ui
+# Build Etherpad UI and pre-install bundled CitizenOS plugins + custom styles
+RUN pnpm run build:ui && node scripts/install-plugins.cjs
+
+ENV ETHERPAD_ALLOW_ROOT=true
 
 # Etherpad usually runs on 9001, but Heroku sets $PORT
 EXPOSE 9001

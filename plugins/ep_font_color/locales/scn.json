@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ajeje Brazorf"
+		]
+	},
+	"ep_font_color.color": "Culuri",
+	"ep_font_color.black": "nigru",
+	"ep_font_color.red": "russu",
+	"ep_font_color.green": "virdi",
+	"ep_font_color.blue": "blu",
+	"ep_font_color.yellow": "giàlinu",
+	"ep_font_color.orange": "aranciuni"
+}

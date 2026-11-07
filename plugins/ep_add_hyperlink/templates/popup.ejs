@@ -1,0 +1,37 @@
+<div class="popup acl-write hyperlink-dialog toolbar-popup popup">
+  <div class="hyperlink-container popup-content">
+    <div class="content-wrap">
+      <div class="input-wrap">
+        <label data-l10n-id="ep_add_hyperlink.popup.lable.link_text">Link text</label>
+        <input type="text" class="input hyperlink-text"/>
+      </div>
+      <div class="input-wrap">
+        <label data-l10n-id="ep_add_hyperlink.popup.lable.link_address">Link address</label>
+        <input type="text" class="input hyperlink-url" placeholder="http://..."/>
+      </div>
+      <button type="button" class="btn btn-primary hyperlink-save" data-l10n-id="ep_add_hyperlink.popup.ok">Ok</button>
+      <button type="button" class="btn btn-primary btn-red hyperlink-remove" data-l10n-id="ep_add_hyperlink.popup.remove">Remove link</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .content-wrap {
+    width: 100%;
+  }
+  .input-wrap {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .input {
+    display: inline-block;
+    clear: both;
+    width: 100%;
+  }
+  .hyperlink-dialog.popup {
+    left: 50%;
+    right: 50%;
+    bottom: auto;
+  }
+
+</style>

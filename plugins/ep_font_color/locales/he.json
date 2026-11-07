@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"YaronSh"
+		]
+	},
+	"ep_font_color.color": "צבע",
+	"ep_font_color.black": "שחור",
+	"ep_font_color.red": "אדום",
+	"ep_font_color.green": "ירוק",
+	"ep_font_color.blue": "כחול",
+	"ep_font_color.yellow": "צהוב",
+	"ep_font_color.orange": "כתום"
+}

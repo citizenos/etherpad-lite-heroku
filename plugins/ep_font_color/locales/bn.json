@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Greatder"
+		]
+	},
+	"ep_font_color.color": "রঙ",
+	"ep_font_color.black": "কালো",
+	"ep_font_color.red": "লাল",
+	"ep_font_color.green": "সবুজ",
+	"ep_font_color.blue": "নীল",
+	"ep_font_color.yellow": "হলুদ",
+	"ep_font_color.orange": "কমলা"
+}

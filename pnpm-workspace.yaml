@@ -4,7 +4,5 @@ packages:
   - etherpad-lite/bin
   - etherpad-lite/doc
   - etherpad-lite/ui
-onlyBuiltDependencies:
-  - '@scarf/scarf'
-  - '@swc/core'
-  - esbuild
+allowBuilds:
+  esbuild: true

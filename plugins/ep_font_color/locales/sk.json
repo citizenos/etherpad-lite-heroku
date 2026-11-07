@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yardom78"
+		]
+	},
+	"ep_font_color.color": "Farba",
+	"ep_font_color.black": "čierna",
+	"ep_font_color.red": "červená",
+	"ep_font_color.green": "zelená",
+	"ep_font_color.blue": "modrá",
+	"ep_font_color.yellow": "žltá",
+	"ep_font_color.orange": "oranžová"
+}

@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"MuratTheTurkish"
+		]
+	},
+	"ep_font_color.color": "Renk",
+	"ep_font_color.black": "siyah",
+	"ep_font_color.red": "kırmızı",
+	"ep_font_color.green": "yeşil",
+	"ep_font_color.blue": "mavi",
+	"ep_font_color.yellow": "sarı",
+	"ep_font_color.orange": "turuncu"
+}

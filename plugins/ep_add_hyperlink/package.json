@@ -1,0 +1,49 @@
+{
+  "name": "ep_add_hyperlink",
+  "version": "0.0.2",
+  "description": "Plugin to add and export hyperlinks",
+  "author": {
+    "name": "ilmar.tyrk (Ilmar Türk)",
+    "email": "<ilmar.tyrk@gmail.com>"
+  },
+  "keywords": [
+    "etherpad",
+    "plugin",
+    "ep"
+  ],
+  "license": "Apache2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/citizenos/ep_add_hyperlink.git"
+  },
+  "bugs": {
+    "url": "https://github.com/citizenos/ep_add_hyperlink/issues"
+  },
+  "homepage": {
+    "url": "https://github.com/citizenos/ep_add_hyperlink/README.md"
+  },
+  "dependencies": {
+    "jsdom": "^22.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.18.0",
+    "eslint-config-etherpad": "^1.0.24",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-mocha": "^8.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-you-dont-need-lodash-underscore": "^6.10.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": "etherpad/plugin"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
+  },
+  "engines": {
+    "node": ">= 10.13.0"
+  }
+}

@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"ArticleEditor404",
+			"Meno25",
+			"أيوب"
+		]
+	},
+	"ep_font_color.color": "اللون",
+	"ep_font_color.black": "أسود",
+	"ep_font_color.red": "أحمر",
+	"ep_font_color.green": "أخضر",
+	"ep_font_color.blue": "أزرق",
+	"ep_font_color.yellow": "أصفر",
+	"ep_font_color.orange": "برتقالي"
+}
