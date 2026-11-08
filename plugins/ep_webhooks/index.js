@@ -47,18 +47,24 @@ const callPadUpdateWebhooks = debounce(() => {
       const caCert = activeSettings.caCert;
       if (caCert) {
         req.ca(caCert);
+      } else if (path.startsWith('https://dev.') || process.env.NODE_TLS_REJECT_UNAUTHORIZED === '0') {
+        req.disableTLSCerts();
       }
 
       req.set('X-API-KEY', activeSettings.apiKey);
       req.send({ pads: changedPadIds });
-      req.end((err) => {
+      req.end((err, res) => {
         if (err) {
           console.error(
             `callPadUpdateWebhooks - HTTP POST failed to ${path}. Error was: ${err}`,
           );
+        } else {
+          console.log(`callPadUpdateWebhooks - HTTP POST to ${path} succeeded with status ${res?.status}`);
         }
       });
     });
+  } else {
+    console.warn('callPadUpdateWebhooks - no activeSettings.pads.update configured');
   }
 }, 1000, { maxWait: 5000 });
 
