@@ -59,6 +59,12 @@ function main() {
   fs.mkdirSync(srcNodeModulesDir, { recursive: true });
   fs.mkdirSync(varDir, { recursive: true });
 
+  // Ensure ep_etherpad-lite symlinks exist so plugins.ts can load core ep.json
+  const etherpadNodeModulesDir = path.join(etherpadRootDir, 'node_modules');
+  fs.mkdirSync(etherpadNodeModulesDir, { recursive: true });
+  ensureSymlink(path.relative(etherpadNodeModulesDir, etherpadSrcDir), path.join(etherpadNodeModulesDir, 'ep_etherpad-lite'));
+  ensureSymlink(path.relative(srcNodeModulesDir, etherpadSrcDir), path.join(srcNodeModulesDir, 'ep_etherpad-lite'));
+
   const installedPlugins = [];
 
   if (fs.existsSync(pluginsSourceDir)) {

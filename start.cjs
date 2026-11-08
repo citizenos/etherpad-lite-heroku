@@ -44,6 +44,10 @@ function normalizeEtherpadV3Settings(settings) {
         settings.port = parseInt(process.env.PORT, 10);
     }
 
+    if (!settings.ip) {
+        settings.ip = process.env.IP || '0.0.0.0';
+    }
+
     if (settings.abiword === null) {
         delete settings.abiword;
     }
@@ -273,6 +277,16 @@ const {persistInstalledPlugins} = require('./etherpad-lite/bin/commonPlugins');
 }
 
 const pathSettings = path.resolve('./etherpad-lite/settings.json');
+const etherpadCoreSymlink = path.resolve('./etherpad-lite/node_modules/ep_etherpad-lite');
+if (!fs.existsSync(etherpadCoreSymlink)) {
+    logger.info(`Creating missing core symlink ${etherpadCoreSymlink} -> ../src`);
+    fs.mkdirSync(path.dirname(etherpadCoreSymlink), { recursive: true });
+    try {
+        fs.symlinkSync('../src', etherpadCoreSymlink, 'dir');
+    } catch (e) {
+        logger.warn('Failed to symlink ep_etherpad-lite:', e.message);
+    }
+}
 logger.info('\nWrite settings.json file which is read by EP to ' + pathSettings);
 try {
     fs.writeFileSync(pathSettings, JSON.stringify(settings, null, 2));
